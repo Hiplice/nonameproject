@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/background_light"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvAnimals"
+        android:id="@+id/rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="10dp"
+        android:layout_weight="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,44 +21,51 @@
 
     </android.support.v7.widget.RecyclerView>
 
-    <LinearLayout
+    <android.support.v7.widget.LinearLayoutCompat
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="45"
+        android:layout_height="100dp"
+        android:layout_weight="1"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent">
+        >
 
-        <ImageView
+
+        <ImageButton
             android:id="@+id/productMenuButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/menu_rectangle"
-            android:padding="7dp"
+            android:padding="10dp"
+            android:scaleType="centerInside"
             app:srcCompat="@drawable/products_black"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="8dp" />
+            />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/recipeMenuButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/menu_rectangle"
-            android:padding="7dp"
+            android:scaleType="centerInside"
+            android:padding="10dp"
             app:srcCompat="@drawable/recipe_black"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="8dp" />
+            />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/settingMenuButton"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="50dp"
             android:layout_weight="1"
+            android:padding="10dp"
+            android:scaleType="centerInside"
             android:background="@drawable/menu_rectangle"
-            android:padding="7dp"
-            app:srcCompat="@drawable/settings_black" />
+            app:srcCompat="@drawable/settings_black"
 
-    </LinearLayout>
+            />
 
 
-</android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.LinearLayoutCompat>
+
+
+</LinearLayout>
