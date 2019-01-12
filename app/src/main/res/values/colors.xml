@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
+
+    <!-- Project default colors -->
+    <color name="colorPrimary">#bdc3c7</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="projectLightGrey">#bdc3c7</color>
-    <color name="projectGrey">#7f8c8d</color>
+
+    <!-- Project interface colors -->
+    <color name="projectLight">#bdc3c7</color>
+    <color name="projectDark">#2f3542</color>
     <color name="projectWhite">#ecf0f1</color>
+
+    <!-- Category colors -->
+    <color name="categoryMeat">#F44336</color>
+    <color name="categoryFruit">#FF9800</color>
+    <color name="categoryGrass">#4CAF50</color>
+    <color name="categoryVegetable">#009688</color>
+    <color name="categorySpice">#795548</color>
+    <color name="categorySweet">#E91E63</color>
+
 </resources>

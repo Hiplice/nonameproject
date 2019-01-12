@@ -32,7 +32,7 @@
             android:layout_weight="1"
             android:background="@drawable/menu_rectangle"
             android:padding="10dp"
-            app:srcCompat="@drawable/products_black"
+            app:srcCompat="@drawable/products_white"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="8dp" />
 
@@ -43,7 +43,7 @@
             android:layout_weight="1"
             android:background="@drawable/menu_rectangle"
             android:padding="10dp"
-            app:srcCompat="@drawable/recipe_black"
+            app:srcCompat="@drawable/recipe_white"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="8dp" />
 
@@ -54,7 +54,7 @@
             android:layout_weight="1"
             android:background="@drawable/menu_rectangle"
             android:padding="10dp"
-            app:srcCompat="@drawable/settings_black" />
+            app:srcCompat="@drawable/settings_white" />
 
     </LinearLayout>
 

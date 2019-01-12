@@ -1,9 +1,9 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- ActionBar settings. todo: a not working variant-->
-        <!-- <item name="android:actionBarStyle">@style/ActionBarStyle</item> -->
+        <item name="android:statusBarColor">@color/projectDark</item>
 
         <!-- Main colors. -->
         <item name="colorPrimary">@color/colorPrimary</item>
