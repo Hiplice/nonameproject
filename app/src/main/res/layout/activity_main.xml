@@ -33,7 +33,7 @@
         <ImageButton
             android:id="@+id/productMenuButton"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/menu_rectangle"
             android:padding="10dp"
@@ -44,7 +44,7 @@
         <ImageButton
             android:id="@+id/recipeMenuButton"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/menu_rectangle"
             android:scaleType="centerInside"

@@ -48,7 +48,7 @@ public class ProductMenuListView extends RecyclerView.Adapter<ProductMenuListVie
 
         ViewHolder(View itemView) {
             super(itemView);
-            myTextView = itemView.findViewById(R.id.tvAnimalName);
+            myTextView = itemView.findViewById(R.id.boldProductName);
             itemView.setOnClickListener(this);
         }
 
