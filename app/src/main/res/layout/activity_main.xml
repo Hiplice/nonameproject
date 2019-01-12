@@ -21,29 +21,29 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <ImageView
             android:id="@+id/productMenuButton"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/menu_rectangle"
-            android:padding="10dp"
-            app:srcCompat="@drawable/products_white"
+            android:padding="7dp"
+            app:srcCompat="@drawable/products_black"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="8dp" />
 
         <ImageView
             android:id="@+id/recipeMenuButton"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/menu_rectangle"
-            android:padding="10dp"
-            app:srcCompat="@drawable/recipe_white"
+            android:padding="7dp"
+            app:srcCompat="@drawable/recipe_black"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="8dp" />
 
@@ -53,8 +53,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/menu_rectangle"
-            android:padding="10dp"
-            app:srcCompat="@drawable/settings_white" />
+            android:padding="7dp"
+            app:srcCompat="@drawable/settings_black" />
 
     </LinearLayout>
 
