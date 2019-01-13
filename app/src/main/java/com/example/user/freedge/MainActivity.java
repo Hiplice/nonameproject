@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements ProductMenuListView.ItemClickListener {
 
@@ -19,46 +20,26 @@ public class MainActivity extends AppCompatActivity implements ProductMenuListVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /**
+         * Взаимодействие с RecyclerView
+         */
         // data to populate the RecyclerView with
-        ArrayList<String> animalNames = new ArrayList<>();
-        animalNames.add("Молоко");
-        animalNames.add("Кефир");
-        animalNames.add("Мясо");
-        animalNames.add("Масло");
-        animalNames.add("Базилик");
-        animalNames.add("Молоко");
-        animalNames.add("Кефир");
-        animalNames.add("Мясо");
-        animalNames.add("Масло");
-        animalNames.add("Базилик");
-        animalNames.add("Молоко");
-        animalNames.add("Кефир");
-        animalNames.add("Мясо");
-        animalNames.add("Масло");
-        animalNames.add("Базилик");
-        animalNames.add("Молоко");
-        animalNames.add("Кефир");
-        animalNames.add("Мясо");
-        animalNames.add("Масло");
-        animalNames.add("Базилик");
-        animalNames.add("Молоко");
-        animalNames.add("Кефир");
-        animalNames.add("Мясо");
-        animalNames.add("Масло");
-        animalNames.add("Базилик");
-        animalNames.add("Молоко");
-        animalNames.add("Кефир");
-        animalNames.add("Мясо");
-        animalNames.add("Масло");
-        animalNames.add("Базилик");
+        ArrayList<ArrayList<String>> availableProducts = DataHandler.getAvailableProducts();
+        ArrayList<String> productNames = availableProducts.get(1);
+        ArrayList<String> productMass = availableProducts.get(2);
+        ArrayList<String> idCategories = availableProducts.get(4);
 
         // set up the RecyclerView
-        RecyclerView recyclerView = findViewById(R.id.rv);
+        RecyclerView recyclerView = findViewById(R.id.productRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new ProductMenuListView(this, animalNames);
+        adapter = new ProductMenuListView(this, productNames);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
 
+
+        /**
+         * Переходы в меню
+         */
 
         //Первая кнопка панели управления
         ImageButton button1 = findViewById(R.id.productMenuButton);
@@ -99,7 +80,11 @@ public class MainActivity extends AppCompatActivity implements ProductMenuListVi
     }
 
 
-
+    /**
+     * Обработчик нажатия на продукты
+     * @param view
+     * @param position
+     */
     @Override
     public void onItemClick(View view, int position) {
         Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
