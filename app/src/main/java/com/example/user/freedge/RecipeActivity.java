@@ -31,7 +31,7 @@ public class RecipeActivity extends AppCompatActivity {
     }
 
 
-    // TODO: Функиционал кнопок управления
+    // Функиционал кнопок управления
     private void buttons(){
 
         //Первая кнопка панели управления

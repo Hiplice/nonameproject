@@ -98,6 +98,8 @@ public class MainActivity extends AppCompatActivity implements ProductMenuListVi
         });
     }
 
+
+
     @Override
     public void onItemClick(View view, int position) {
         Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
