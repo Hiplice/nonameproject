@@ -59,23 +59,22 @@ public class MainActivity extends AppCompatActivity implements ProductMenuListVi
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
 
-        //Первая кнопка
+
+        //Первая кнопка панели управления
         ImageButton button1 = findViewById(R.id.productMenuButton);
         final Toast toast1 = Toast.makeText(getApplicationContext(),
                 "РАБОТАЕТ 1!", Toast.LENGTH_SHORT);
-
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 toast1.show();
             }
         });
 
-        //Вторая кнопка
+        //Вторая кнопка панели управления
         ImageButton button2 = findViewById(R.id.recipeMenuButton);
         final Toast toast2 = Toast.makeText(getApplicationContext(),
                 "РАБОТАЕТ 2!", Toast.LENGTH_SHORT);
-
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,11 +82,10 @@ public class MainActivity extends AppCompatActivity implements ProductMenuListVi
             }
         });
 
-        //Третья кнопка
+        //Третья кнопка панели управления
         ImageButton button3 = findViewById(R.id.settingMenuButton);
         final Toast toast3 = Toast.makeText(getApplicationContext(),
                 "РАБОТАЕТ 3!", Toast.LENGTH_SHORT);
-
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

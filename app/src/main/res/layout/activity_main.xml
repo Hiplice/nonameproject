@@ -9,6 +9,7 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv"
         android:layout_width="match_parent"
@@ -21,6 +22,8 @@
 
     </android.support.v7.widget.RecyclerView>
 
+
+    <!-- Расписываем кнопки управления -->
     <android.support.v7.widget.LinearLayoutCompat
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -29,29 +32,29 @@
         android:orientation="horizontal"
         >
 
-
+        <!-- Первая кнопка управления -->
         <ImageButton
             android:id="@+id/productMenuButton"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:background="@drawable/menu_rectangle"
             android:padding="10dp"
             android:scaleType="centerInside"
-            app:srcCompat="@drawable/products_black"
-            />
+            android:background="@drawable/menu_rectangle"
+            app:srcCompat="@drawable/products_black" />
 
+        <!-- Вторая кнопка управления -->
         <ImageButton
             android:id="@+id/recipeMenuButton"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:background="@drawable/menu_rectangle"
-            android:scaleType="centerInside"
             android:padding="10dp"
-            app:srcCompat="@drawable/recipe_black"
-            />
+            android:scaleType="centerInside"
+            android:background="@drawable/menu_rectangle"
+            app:srcCompat="@drawable/recipe_black" />
 
+        <!-- Третья кнопка управления -->
         <ImageButton
             android:id="@+id/settingMenuButton"
             android:layout_width="match_parent"
@@ -60,10 +63,7 @@
             android:padding="10dp"
             android:scaleType="centerInside"
             android:background="@drawable/menu_rectangle"
-            app:srcCompat="@drawable/settings_black"
-
-            />
-
+            app:srcCompat="@drawable/settings_black" />
 
     </android.support.v7.widget.LinearLayoutCompat>
 
