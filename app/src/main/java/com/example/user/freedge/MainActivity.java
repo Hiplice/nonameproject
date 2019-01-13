@@ -88,10 +88,12 @@ public class MainActivity extends AppCompatActivity implements ProductMenuListVi
         ImageButton button3 = findViewById(R.id.settingMenuButton);
         final Toast toast3 = Toast.makeText(getApplicationContext(),
                 "РАБОТАЕТ 3!", Toast.LENGTH_SHORT);
+        final Intent intent3 = new Intent(MainActivity.this, SettingsActivity.class);
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 toast3.show();
+                startActivity(intent3);
             }
         });
     }

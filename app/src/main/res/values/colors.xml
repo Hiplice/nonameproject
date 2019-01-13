@@ -19,4 +19,6 @@
     <color name="categorySpice">#8D6E63</color>
     <color name="categorySweet">#EC407A</color>
 
+    <color name="buttons">#33FFFFFF</color>
+
 </resources>
