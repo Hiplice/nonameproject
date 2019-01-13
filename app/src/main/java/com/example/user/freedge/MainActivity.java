@@ -1,5 +1,6 @@
 package com.example.user.freedge;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements ProductMenuListView.ItemClickListener {
@@ -75,10 +75,12 @@ public class MainActivity extends AppCompatActivity implements ProductMenuListVi
         ImageButton button2 = findViewById(R.id.recipeMenuButton);
         final Toast toast2 = Toast.makeText(getApplicationContext(),
                 "РАБОТАЕТ 2!", Toast.LENGTH_SHORT);
+        final Intent intent2 = new Intent(MainActivity.this, RecipeActivity.class);
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 toast2.show();
+                startActivity(intent2);
             }
         });
 
