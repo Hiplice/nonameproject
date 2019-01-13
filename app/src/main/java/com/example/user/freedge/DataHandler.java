@@ -1,15 +1,12 @@
 package com.example.user.freedge;
 
-import android.graphics.Color;
-import android.support.v4.content.ContextCompat;
-
 import java.util.ArrayList;
 
 public class DataHandler {
 
-    // ***********************
-    // *** Product getters ***
-    // ***********************
+    /**
+     * Product getters
+     */
 
     public ArrayList getAvailableProducts() {
         // TODO: Возвращение ArrayList со структурой [[0]: ID, [1]: Название, [2]: Масса, [3]: Дата добавления, [4]: ID Категории]
@@ -29,9 +26,9 @@ public class DataHandler {
         return productInformation;
     }
 
-    // **********************
-    // *** Recipe getters ***
-    // **********************
+    /**
+     * Recipe getters
+     */
 
     public ArrayList getAvailableRecipes() {
         // TODO: Возвращение ArrayList со структурой [[0]: ID, [1]: Название, [2]: ID Необходимых продуктов, [3]: Категория]
@@ -46,9 +43,9 @@ public class DataHandler {
         return allRecipes;
     }
 
-    // ************************
-    // *** Category getters ***
-    // ************************
+    /**
+     * Category getters
+     */
 
     public ArrayList getCategoryColorsById(ArrayList idList) {
         // TODO: Метод принимает на вход ArrayList с id категорий и отдаёт ArrayList с String`ами цветов
@@ -62,9 +59,9 @@ public class DataHandler {
         return iconList;
     }
 
-    // *******************************
-    // *** Product adders/removers ***
-    // *******************************
+    /**
+     * Product adders/removers
+     */
 
     public void addProduct(int id, int weight){
         // TODO: Метод принимает на вход id продукта и вес, после чего добавляет этот продукт в DB
