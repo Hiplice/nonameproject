@@ -2,7 +2,7 @@ package com.example.user.freedge;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,19 +11,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ProductMenuListView extends RecyclerView.Adapter<ProductMenuListView.ViewHolder> {
 
     private ArrayList<ArrayList<String>> mData;
-    private ArrayList<String> mColors;
+    private ArrayList<Integer> mColors;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
+    private Context context;
 
     // data is passed into the constructor
     ProductMenuListView(Context context, ArrayList<ArrayList<String>> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
+        this.context = context;
         mColors = DataHandler.getCategoryColorsById(mData.get(4));
     }
 
@@ -40,7 +41,7 @@ public class ProductMenuListView extends RecyclerView.Adapter<ProductMenuListVie
         holder.boldProductName.setText(mData.get(1).get(position));
         holder.weightText.setText(mData.get(2).get(position));
         holder.productAddDate.setText( mData.get(3).get(position));
-        holder.menuElement.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(mColors.get(position))));
+        holder.menuElement.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, mColors.get(position))));
     }
 
     // total number of rows

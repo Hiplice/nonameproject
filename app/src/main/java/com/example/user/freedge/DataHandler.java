@@ -1,5 +1,7 @@
 package com.example.user.freedge;
 
+import android.support.v4.content.ContextCompat;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -67,18 +69,21 @@ public class DataHandler {
 
     public static ArrayList getCategoryColorsById(ArrayList<String> idList) {
         // TODO: Метод принимает на вход ArrayList с id категорий и отдаёт ArrayList с String`ами цветов
-        ArrayList colorList = new ArrayList<String>();
-        String[] categories = {"#EF5350", "#ffa726", "#66BB6A", "#26A69A", "#8D6E63", "#EC407A"};
+        ArrayList colorList = new ArrayList<Integer>();
+        int[] categories = {R.color.categoryMeat, R.color.categoryFruit, R.color.categoryGrass, R.color.categoryVegetable, R.color.categorySpice, R.color.categorySweet};
         for (int i = 0; i < idList.size(); ++i) {
             colorList.add(categories[Integer.valueOf(idList.get(i))]);
         }
         return colorList;
     }
 
-    public ArrayList getCategoryIconsById(ArrayList idList) {
+    public static ArrayList getCategoryIconsById(ArrayList<String> idList) {
         // TODO: Метод принимает на вход ArrayList с id категорий и отдаёт ArrayList с String`ами ссылок на иконки
-        ArrayList iconList = new ArrayList();
-        String[] iconURLs = {"@drawable", "#ffa726", "#66BB6A", "#26A69A", "#8D6E63", "#EC407A"};
+        ArrayList iconList = new ArrayList<Integer>();
+        int[] iconURLs = {R.drawable.category_meat, R.drawable.category_fruit, R.drawable.category_grass, R.drawable.category_vegetable, R.drawable.category_spice, R.drawable.category_sweet};
+        for (int i = 0; i < idList.size(); ++i) {
+            iconList.add(iconURLs[Integer.valueOf(idList.get(i))]);
+        }
         return iconList;
     }
 
@@ -93,6 +98,4 @@ public class DataHandler {
     public void removeProduct(int id){
         // TODO: Метод принимает на вход id продукта, после чего удаляет его из DB
     }
-
-
 }
