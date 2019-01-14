@@ -25,14 +25,11 @@ public class MainActivity extends AppCompatActivity implements ProductMenuListVi
          */
         // data to populate the RecyclerView with
         ArrayList<ArrayList<String>> availableProducts = DataHandler.getAvailableProducts();
-        ArrayList<String> productNames = availableProducts.get(1);
-        ArrayList<String> productMass = availableProducts.get(2);
-        ArrayList<String> idCategories = availableProducts.get(4);
 
         // set up the RecyclerView
         RecyclerView recyclerView = findViewById(R.id.productRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new ProductMenuListView(this, productNames);
+        adapter = new ProductMenuListView(this, availableProducts);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
 

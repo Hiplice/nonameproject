@@ -18,7 +18,7 @@ public class DataHandler {
                 {"Куриное мясо", "Брокколи", "Говядина", "Сыр", "Колбаса", "Арбуз", "Молоко", "Морковь", "Лук", "Яблоки"},
                 {"500 г", "700 г", "1200 г", "350 г", "200 г", "5400 г", "1000 г", "2000 г", "1500 г", "1200 г"},
                 {"10.11.2005", "10.11.2005", "10.11.2005", "10.11.2005", "10.11.2005", "10.11.2005", "10.11.2005", "10.11.2005", "10.11.2005", "10.11.2005"},
-                {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"}
+                {"0", "1", "0", "2", "3", "4", "1", "2", "3", "0"}
         };
 
         ArrayList availableProducts = new ArrayList<ArrayList<String>>();
@@ -65,15 +65,20 @@ public class DataHandler {
      * Category getters
      */
 
-    public ArrayList getCategoryColorsById(ArrayList idList) {
+    public static ArrayList getCategoryColorsById(ArrayList<String> idList) {
         // TODO: Метод принимает на вход ArrayList с id категорий и отдаёт ArrayList с String`ами цветов
-       ArrayList colorList = new ArrayList();
-       return colorList;
+        ArrayList colorList = new ArrayList<String>();
+        String[] categories = {"#EF5350", "#ffa726", "#66BB6A", "#26A69A", "#8D6E63", "#EC407A"};
+        for (int i = 0; i < idList.size(); ++i) {
+            colorList.add(categories[Integer.valueOf(idList.get(i))]);
+        }
+        return colorList;
     }
 
     public ArrayList getCategoryIconsById(ArrayList idList) {
         // TODO: Метод принимает на вход ArrayList с id категорий и отдаёт ArrayList с String`ами ссылок на иконки
         ArrayList iconList = new ArrayList();
+        String[] iconURLs = {"@drawable", "#ffa726", "#66BB6A", "#26A69A", "#8D6E63", "#EC407A"};
         return iconList;
     }
 
