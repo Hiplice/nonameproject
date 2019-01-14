@@ -55,4 +55,10 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.container, recipes);
         transaction.commit();
     }
+
+    public void onButton(View view){
+        final Toast toast = Toast.makeText(getApplicationContext(),
+                "Заработало", Toast.LENGTH_SHORT);
+        toast.show();
+    }
 }
