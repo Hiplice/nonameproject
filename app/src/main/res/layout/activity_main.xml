@@ -35,17 +35,13 @@
 
     </android.support.design.widget.AppBarLayout>
 
-
-    <!-- Пролистывание продуктов -->
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/productRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <!-- Контейнер для фрагментов-->
+    <FrameLayout
+        android:id="@+id/container"
         android:layout_weight="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+    </FrameLayout>
 
 
     <!-- Расписываем кнопки управления -->
@@ -66,7 +62,9 @@
             android:padding="10dp"
             android:scaleType="centerInside"
             android:background="@drawable/menu_rectangle"
-            app:srcCompat="@drawable/products_black" />
+            android:onClick="onProducts"
+            app:srcCompat="@drawable/products_black"
+            />
 
         <!-- Вторая кнопка управления -->
         <ImageButton
@@ -77,6 +75,7 @@
             android:padding="10dp"
             android:scaleType="centerInside"
             android:background="@drawable/menu_rectangle"
+            android:onClick="onRecipes"
             app:srcCompat="@drawable/recipe_black" />
 
         <!-- Третья кнопка управления -->
