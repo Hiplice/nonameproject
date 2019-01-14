@@ -18,6 +18,7 @@ public class Products extends Fragment {
                              Bundle savedInstanceState) {
 
         return inflater.inflate(R.layout.products, null);
+        //Антон хорош
     }
 }
 
