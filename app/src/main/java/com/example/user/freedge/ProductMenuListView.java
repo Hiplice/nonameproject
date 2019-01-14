@@ -1,24 +1,34 @@
 package com.example.user.freedge;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class ProductMenuListView extends RecyclerView.Adapter<ProductMenuListView.ViewHolder> {
 
-    private List<String> mData;
+    private ArrayList<ArrayList<String>> mData;
+    private ArrayList<Integer> mColors;
+    private ArrayList<Integer> mIcons;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
+    private Context context;
 
     // data is passed into the constructor
-    ProductMenuListView(Context context, List<String> data) {
+    ProductMenuListView(Context context, ArrayList<ArrayList<String>> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
+        this.context = context;
+        mColors = DataHandler.getCategoryColorsById(mData.get(4));
+        mIcons = DataHandler.getCategoryIconsById(mData.get(4));
     }
 
     // inflates the row layout from xml when needed
@@ -31,24 +41,35 @@ public class ProductMenuListView extends RecyclerView.Adapter<ProductMenuListVie
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String animal = mData.get(position);
-        holder.myTextView.setText(animal);
+        holder.boldProductName.setText(mData.get(1).get(position));
+        holder.weightText.setText(mData.get(2).get(position));
+        holder.productAddDate.setText( mData.get(3).get(position));
+        holder.menuElement.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, mColors.get(position))));
+        holder.categoryImage.setImageResource(mIcons.get(position));
     }
 
     // total number of rows
     @Override
     public int getItemCount() {
-        return mData.size();
+        return mData.get(0).size();
     }
 
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView myTextView;
+        LinearLayout menuElement;
+        TextView boldProductName;
+        TextView productAddDate;
+        TextView weightText;
+        ImageView categoryImage;
 
         ViewHolder(View itemView) {
             super(itemView);
-            myTextView = itemView.findViewById(R.id.boldProductName);
+            categoryImage = itemView.findViewById(R.id.categoryImage);
+            boldProductName = itemView.findViewById(R.id.boldProductName);
+            productAddDate = itemView.findViewById(R.id.productAddDate);
+            weightText = itemView.findViewById(R.id.weightText);
+            menuElement = itemView.findViewById(R.id.menuElem);
             itemView.setOnClickListener(this);
         }
 
@@ -60,7 +81,7 @@ public class ProductMenuListView extends RecyclerView.Adapter<ProductMenuListVie
 
     // convenience method for getting data at click position
     String getItem(int id) {
-        return mData.get(id);
+        return mData.get(1).get(id);
     }
 
     // allows clicks events to be caught

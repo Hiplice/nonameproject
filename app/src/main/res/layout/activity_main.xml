@@ -22,20 +22,18 @@
             android:background="@color/projectWhite"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
-        <TextView
-            android:id="@+id/toolbar_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/name1"
-            android:textSize="25sp"
-            android:textColor="@color/projectDark"
-            />
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/appbar_products"
+                android:textColor="@color/projectDark"
+                android:textSize="18sp" />
 
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
-
 
     <!-- Контейнер для фрагментов-->
     <FrameLayout
