@@ -12,16 +12,10 @@ import com.example.user.freedge.R;
 
 public class Recipes extends Fragment {
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.recipe, null);
-    }
-
-    public void onButton(View view){
-        final Toast toast = Toast.makeText(getActivity().getApplicationContext(),
-                "Заработало", Toast.LENGTH_SHORT);
-        toast.show();
+        View recipeView = inflater.inflate(R.layout.recipe, container, false);
+        return recipeView;
     }
 }
