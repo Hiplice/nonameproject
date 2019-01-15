@@ -4,6 +4,7 @@ import android.support.v4.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class DataHandler {
 
@@ -11,7 +12,7 @@ public class DataHandler {
      * Product getters
      */
 
-    public static ArrayList getAvailableProducts() {
+    public static List<List<String>> getAvailableProducts() {
         // TODO: Возвращение ArrayList со структурой [[0]: ID, [1]: Название, [2]: Масса, [3]: Дата добавления, [4]: ID Категории]
 
         // TODO: Тут должен быть запрос из ДБ
@@ -23,7 +24,7 @@ public class DataHandler {
                 {"0", "1", "0", "2", "3", "4", "1", "2", "3", "0"}
         };
 
-        ArrayList availableProducts = new ArrayList<ArrayList<String>>();
+        List availableProducts = new ArrayList<ArrayList<String>>();
         for (String[] i : availableProductsMass) {
             ArrayList inside = new ArrayList<String>();
             for (String j: i) {
@@ -67,9 +68,9 @@ public class DataHandler {
      * Category getters
      */
 
-    public static ArrayList getCategoryColorsById(ArrayList<String> idList) {
+    public static List<Integer> getCategoryColorsById(List<String> idList) {
         // TODO: Метод принимает на вход ArrayList с id категорий и отдаёт ArrayList с String`ами цветов
-        ArrayList colorList = new ArrayList<Integer>();
+        List colorList = new ArrayList<Integer>();
         int[] categories = {R.color.categoryMeat, R.color.categoryFruit, R.color.categoryGrass, R.color.categoryVegetable, R.color.categorySpice, R.color.categorySweet};
         for (int i = 0; i < idList.size(); ++i) {
             colorList.add(categories[Integer.valueOf(idList.get(i))]);
@@ -77,9 +78,9 @@ public class DataHandler {
         return colorList;
     }
 
-    public static ArrayList getCategoryIconsById(ArrayList<String> idList) {
+    public static List<Integer> getCategoryIconsById(List<String> idList) {
         // TODO: Метод принимает на вход ArrayList с id категорий и отдаёт ArrayList с String`ами ссылок на иконки
-        ArrayList iconList = new ArrayList<Integer>();
+        List iconList = new ArrayList<Integer>();
         int[] iconURLs = {R.drawable.category_meat, R.drawable.category_fruit, R.drawable.category_grass, R.drawable.category_vegetable, R.drawable.category_spice, R.drawable.category_sweet};
         for (int i = 0; i < idList.size(); ++i) {
             iconList.add(iconURLs[Integer.valueOf(idList.get(i))]);
