@@ -31,7 +31,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:onClick="onButton"
-        app:layout_behavior="com.example.user.freedge.Float_On_Scroll"
+        app:layout_behavior="com.example.user.freedge.FloatOnScroll"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_dialog_email" />

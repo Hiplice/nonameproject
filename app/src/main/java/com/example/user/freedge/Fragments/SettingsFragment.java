@@ -10,12 +10,12 @@ import android.widget.Toast;
 
 import com.example.user.freedge.R;
 
-public class Recipes extends Fragment {
+public class SettingsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View recipeView = inflater.inflate(R.layout.recipe, container, false);
+        View recipeView = inflater.inflate(R.layout.settings_fragment, container, false);
         return recipeView;
     }
 }

@@ -1,31 +1,29 @@
 package com.example.user.freedge;
 
-import android.content.Context;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.Toast;
-import java.util.ArrayList;
-import java.util.Map;
 
-import com.example.user.freedge.Fragments.Products;
-import com.example.user.freedge.Fragments.Recipes;
+import com.example.user.freedge.Fragments.ProductsFragment;
+import com.example.user.freedge.Fragments.RecipesFragment;
+import com.example.user.freedge.Fragments.SettingsFragment;
 
 
 public class MainActivity extends AppCompatActivity {
 
     android.app.FragmentTransaction transaction;
-    Recipes recipes;
-    Products products;
+    RecipesFragment recipes;
+    ProductsFragment products;
+    SettingsFragment settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        products = new Products();
-        recipes = new Recipes();
+        products = new ProductsFragment();
+        recipes = new RecipesFragment();
+        settings = new SettingsFragment();
 
       
         transaction = getFragmentManager().beginTransaction();
@@ -45,14 +43,17 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
     }
 
+    public void onSettings(View view) {
+        transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, settings);
+        transaction.commit();
+    }
+
     public void onButton(View view){
         final Toast toast = Toast.makeText(getApplicationContext(),
                 "Заработало", Toast.LENGTH_SHORT);
         toast.show();
     }
 
-    public void onSettings(View view) {
-        Intent intent = new Intent(this,SettingsActivity.class);
-        startActivity(intent);
-    }
+
 }

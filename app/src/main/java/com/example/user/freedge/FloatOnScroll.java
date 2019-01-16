@@ -8,10 +8,9 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 
-class Float_On_Scroll extends FloatingActionButton.Behavior {
+class FloatOnScroll extends FloatingActionButton.Behavior {
 
-
-    public Float_On_Scroll(Context context, AttributeSet attrs) {
+    public FloatOnScroll(Context context, AttributeSet attrs) {
         super();
     }
 

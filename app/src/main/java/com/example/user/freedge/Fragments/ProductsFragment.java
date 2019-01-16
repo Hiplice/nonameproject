@@ -16,7 +16,7 @@ import com.example.user.freedge.R;
 
 import java.util.ArrayList;
 
-public class Products extends Fragment {
+public class ProductsFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -26,7 +26,7 @@ public class Products extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View productsView = inflater.inflate(R.layout.products, container, false);
+        View productsView = inflater.inflate(R.layout.products_fragment, container, false);
 
         mRecyclerView = productsView.findViewById(R.id.productRecyclerView);
         context = productsView.getContext();
