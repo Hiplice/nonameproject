@@ -87,6 +87,7 @@
             android:padding="10dp"
             android:scaleType="centerInside"
             android:background="@drawable/menu_rectangle"
+            android:onClick="onSettings"
             app:srcCompat="@drawable/settings_black" />
 
     </android.support.v7.widget.LinearLayoutCompat>

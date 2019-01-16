@@ -50,4 +50,9 @@ public class MainActivity extends AppCompatActivity {
                 "Заработало", Toast.LENGTH_SHORT);
         toast.show();
     }
+
+    public void onSettings(View view) {
+        Intent intent = new Intent(this,SettingsActivity.class);
+        startActivity(intent);
+    }
 }
