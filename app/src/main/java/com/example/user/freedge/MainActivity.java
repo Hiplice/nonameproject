@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.user.freedge.Fragments.ProductsFragment;
 import com.example.user.freedge.Fragments.RecipesFragment;
@@ -16,34 +17,52 @@ public class MainActivity extends AppCompatActivity {
     RecipesFragment recipes;
     ProductsFragment products;
     SettingsFragment settings;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        toolbar = findViewById(R.id.toolbar);
+
         products = new ProductsFragment();
         recipes = new RecipesFragment();
         settings = new SettingsFragment();
 
-      
+        // Меняем надпись на тулбаре
+        toolbar.setTitle(R.string.appbar_products);
+
+        // Устанавливаем активити в фрагменте
         transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.container, products);
         transaction.commit();
     }
 
     public void onProducts(View view) {
+        // Меняем надпись на тулбаре
+        toolbar.setTitle(R.string.appbar_recipes);
+
+        // Меняем активити в фрагменте
         transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.container, products);
         transaction.commit();
     }
 
     public void onRecipes(View view) {
+        // Меняем надпись на тулбаре
+        toolbar.setTitle(R.string.appbar_recipes);
+
+        // Меняем активити в фрагменте
         transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.container, recipes);
         transaction.commit();
     }
 
     public void onSettings(View view) {
+        // Меняем надпись на тулбаре
+        toolbar.setTitle(R.string.appbar_recipes);
+
+        // Меняем активити в фрагменте
         transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.container, settings);
         transaction.commit();
