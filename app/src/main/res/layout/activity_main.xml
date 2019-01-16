@@ -10,8 +10,8 @@
     android:orientation="vertical">
 
     <!-- Прописан Toolbar -->
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <Toolbar
+        android:id="@+id/upperToolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/categoryVegetable"
@@ -20,11 +20,10 @@
     <!-- Контейнер для фрагментов-->
 
     <FrameLayout
-        android:id="@+id/container"
-        android:layout_weight="1"
+        android:id="@+id/contentContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-    </FrameLayout>
+        android:layout_height="match_parent"
+        android:layout_weight="1"></FrameLayout>
 
 
     <!-- Расписываем кнопки управления -->

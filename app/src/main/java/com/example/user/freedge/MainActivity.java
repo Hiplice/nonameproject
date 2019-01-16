@@ -23,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar = findViewById(R.id.toolbar);
+
+        toolbar = findViewById(R.id.upperToolbar);
 
         products = new ProductsFragment();
         recipes = new RecipesFragment();
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Устанавливаем активити в фрагменте
         transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, products);
+        transaction.replace(R.id.contentContainer, products);
         transaction.commit();
     }
 
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Меняем активити в фрагменте
         transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, products);
+        transaction.replace(R.id.contentContainer, products);
         transaction.commit();
     }
 
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Меняем активити в фрагменте
         transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, recipes);
+        transaction.replace(R.id.contentContainer, recipes);
         transaction.commit();
     }
 
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Меняем активити в фрагменте
         transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, settings);
+        transaction.replace(R.id.contentContainer, settings);
         transaction.commit();
     }
 
