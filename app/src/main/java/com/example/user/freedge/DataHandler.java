@@ -4,9 +4,10 @@ import android.support.v4.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
-public class DataHandler {
+public class DataHandler extends MainActivity {
 
     /**
      * Product getters
