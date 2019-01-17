@@ -47,6 +47,7 @@
     <!-- Расписываем кнопки управления -->
 
     <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigationMenu"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
