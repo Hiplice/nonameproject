@@ -3,6 +3,7 @@ package com.example.user.freedge;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -17,21 +18,21 @@ public class MainActivity extends AppCompatActivity {
     RecipesFragment recipes;
     ProductsFragment products;
     SettingsFragment settings;
-    Toolbar toolbar;
+    TextView toolBarText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        toolbar = findViewById(R.id.upperToolbar);
+        toolBarText = findViewById(R.id.toolBarText);
 
         products = new ProductsFragment();
         recipes = new RecipesFragment();
         settings = new SettingsFragment();
 
         // Меняем надпись на тулбаре
-        toolbar.setTitle(R.string.appbar_products);
+        toolBarText.setText(R.string.appbar_products);
 
         // Устанавливаем активити в фрагменте
         transaction = getFragmentManager().beginTransaction();
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onProducts(View view) {
         // Меняем надпись на тулбаре
-        toolbar.setTitle(R.string.appbar_recipes);
+        toolBarText.setText(R.string.appbar_products);
 
         // Меняем активити в фрагменте
         transaction = getFragmentManager().beginTransaction();
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onRecipes(View view) {
         // Меняем надпись на тулбаре
-        toolbar.setTitle(R.string.appbar_recipes);
+        toolBarText.setText(R.string.appbar_recipes);
 
         // Меняем активити в фрагменте
         transaction = getFragmentManager().beginTransaction();
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onSettings(View view) {
         // Меняем надпись на тулбаре
-        toolbar.setTitle(R.string.appbar_recipes);
+        toolBarText.setText(R.string.appbar_settings);
 
         // Меняем активити в фрагменте
         transaction = getFragmentManager().beginTransaction();

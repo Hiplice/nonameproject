@@ -9,7 +9,7 @@
     <!-- Project interface colors -->
     <color name="projectLight">#bdc3c7</color>
     <color name="projectDark">#212121</color>
-    <color name="projectWhite">#ecf0f1</color>
+    <color name="projectWhite">#ECF0F1</color>
 
     <!-- Category colors -->
     <color name="categoryMeat">#E57373</color>
