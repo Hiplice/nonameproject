@@ -19,7 +19,7 @@
             android:id="@+id/upperToolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/categoryVegetable"
+            android:background="@color/colorPrimary"
             android:requiresFadingEdge="none">
 
             <TextView
@@ -49,9 +49,9 @@
     <android.support.design.widget.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/categoryVegetable"
+        android:background="@color/colorPrimary"
         app:elevation="4dp"
-        app:itemHorizontalTranslationEnabled="false"
+        app:itemHorizontalTranslationEnabled="true"
         app:itemIconTint="@color/projectWhite"
         app:itemTextColor="@color/projectWhite"
         app:labelVisibilityMode="unlabeled"
