@@ -14,8 +14,6 @@ import com.example.user.freedge.DataHandler;
 import com.example.user.freedge.ProductMenuListView;
 import com.example.user.freedge.R;
 
-import java.util.ArrayList;
-
 public class ProductsFragment extends Fragment {
 
     private RecyclerView mRecyclerView;

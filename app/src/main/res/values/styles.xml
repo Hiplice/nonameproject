@@ -2,7 +2,6 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- ActionBar settings. todo: a not working variant-->
 
         <!-- Main colors. -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -13,11 +12,6 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
-    <!-- todo: a not working variant -->
-    <!-- <style name="ActionBarStyle" parent="Theme.AppCompat.Light">
-        <item name="android:background">@color/white</item>
-    </style> -->
 
 
 </resources>
