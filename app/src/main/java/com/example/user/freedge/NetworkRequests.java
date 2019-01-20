@@ -34,18 +34,8 @@ public class NetworkRequests extends AsyncTask<String, String, String> {
             }
             in.close();
         } catch (MalformedURLException e) {
-            publishProgress(String.valueOf(e));
         } catch (IOException e) {
-            publishProgress(String.valueOf(e));
         }
         return response.toString();
-    }
-
-    @Override
-    protected void onProgressUpdate(String... values) {
-        super.onProgressUpdate(values);
-
-        Toast toast = Toast.makeText(context, values[0], Toast.LENGTH_SHORT);
-        toast.show();
     }
 }
