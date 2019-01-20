@@ -9,11 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.user.freedge.DataHandler;
 import com.example.user.freedge.R;
-import com.example.user.freedge.RecyclerViewHandlers.ProductMenuListView;
 import com.example.user.freedge.RecyclerViewHandlers.RecipeListView;
 
 public class
