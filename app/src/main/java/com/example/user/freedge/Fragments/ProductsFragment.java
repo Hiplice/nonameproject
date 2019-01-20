@@ -28,26 +28,13 @@ public class ProductsFragment extends Fragment {
 
         mRecyclerView = productsView.findViewById(R.id.productRecyclerView);
         context = productsView.getContext();
-
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
         mRecyclerView.setHasFixedSize(true);
-
-        // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(context);
         mRecyclerView.setLayoutManager(mLayoutManager);
-
-        // specify an adapter (see also next example)
-        mAdapter = new ProductMenuListView(context, DataHandler.getAvailableProducts());
+        mAdapter = new ProductMenuListView(context, DataHandler.getAvailableProducts(context));
         mRecyclerView.setAdapter(mAdapter);
 
         return productsView;
-    }
-
-    public void onButton(View view){
-        final Toast toast = Toast.makeText(getActivity().getApplicationContext(),
-                "Заработало", Toast.LENGTH_SHORT);
-        toast.show();
     }
 }
 

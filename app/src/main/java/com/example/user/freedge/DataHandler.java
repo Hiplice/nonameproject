@@ -1,103 +1,135 @@
 package com.example.user.freedge;
 
-import android.support.v4.content.ContextCompat;
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
+import android.os.AsyncTask;
+import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
 
-public class DataHandler extends MainActivity {
 
+public class DataHandler {
     /**
-     * Product getters
+     * Работа с локальной базой данных
      */
 
-    public static List<List<String>> getAvailableProducts() {
-        // TODO: Возвращение ArrayList со структурой [[0]: ID, [1]: Название, [2]: Масса, [3]: Дата добавления, [4]: ID Категории]
+    /**
+     * Метод делает запрос в локальную ДБ и возвращает двумерный массив  [productID, productName, productWeight, categoryID, addDate]
+     **/
+    public static String[][] getAvailableProducts(final Context context) {
+        class DatabaseThread extends AsyncTask<Void, Void, String[][]> {
+            @Override
+            protected String[][] doInBackground(Void... voids) {
+                DataBaseHelper dbHelper = new DataBaseHelper(context);
+                SQLiteDatabase db;
+                try {
+                    db = dbHelper.getWritableDatabase();
+                }
+                catch (SQLiteException ex){
+                    db = dbHelper.getReadableDatabase();
+                }
+                Cursor cursor = db.query("localproductlist", null, null, null, null, null, null);
 
-        // TODO: Тут должен быть запрос из ДБ
-        String[][] availableProductsMass = {
-                {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"},
-                {"Куриное мясо", "Брокколи", "Говядина", "Сыр", "Колбаса", "Арбуз", "Молоко", "Морковь", "Лук", "Яблоки"},
-                {"500 г", "700 г", "1200 г", "350 г", "200 г", "5400 г", "1000 г", "2000 г", "1500 г", "1200 г"},
-                {"10.11.2005", "10.11.2005", "10.11.2005", "10.11.2005", "10.11.2005", "10.11.2005", "10.11.2005", "10.11.2005", "10.11.2005", "10.11.2005"},
-                {"0", "1", "0", "2", "3", "4", "1", "2", "3", "0"}
-        };
+                ArrayList<ArrayList<String>> requestList = new ArrayList<>();
 
-        List availableProducts = new ArrayList<ArrayList<String>>();
-        for (String[] i : availableProductsMass) {
-            ArrayList inside = new ArrayList<String>();
-            for (String j: i) {
-                inside.add(j);
+                int counter = 0;
+                while (cursor.moveToNext()) {
+                    requestList.add(new ArrayList<String>());
+                    for (int i = 0; i < 5; ++i) {
+                        requestList.get(counter).add(cursor.getString(cursor.getColumnIndex(DataBaseHelper.columnNames[i])));
+                    } counter++;
+                }
+                String[][] returnRequest;
+                if (requestList.size() == 0) {
+                    returnRequest = new String[][] {};
+                } else {
+                    returnRequest = new String[requestList.size()][requestList.get(0).size()];
+                }
+                for (int i = 0; i < requestList.size(); ++i) {
+                    for (int j = 0; j < requestList.get(0).size(); ++j) {
+                        returnRequest[i][j] = requestList.get(i).get(j);
+                    }
+                }
+
+                return returnRequest;
             }
-            availableProducts.add(inside);
         }
-        return availableProducts;
-    }
+        DatabaseThread databaseThread = new DatabaseThread();
+        databaseThread.execute();
 
-    public ArrayList getAllProducts() {
-        // TODO: Возвращение ArrayList со структурой [[0]: ID, [1]: Название, [2]: ID Категории]
-        ArrayList allProducts = new ArrayList();
-        return allProducts;
-    }
-
-    public ArrayList getProductByID(int ID) {
-        // TODO: Возвращение ArrayList со структурой [[0]: ID, [1]: Название, [2]: ID Категории]
-        ArrayList productInformation = new ArrayList();
-        return productInformation;
-    }
-
-    /**
-     * Recipe getters
-     */
-
-    public ArrayList getAvailableRecipes() {
-        // TODO: Возвращение ArrayList со структурой [[0]: ID, [1]: Название, [2]: ID Необходимых продуктов, [3]: Категория]
-        ArrayList availableRecipes = new ArrayList();
-        return availableRecipes;
-    }
-
-
-    public ArrayList getAllRecipes() {
-        // TODO: Возвращение ArrayList со структурой [[0]: ID, [1]: Название, [2]: ID Необходимых продуктов, [3]: Категория]
-        ArrayList allRecipes = new ArrayList();
-        return allRecipes;
-    }
-
-    /**
-     * Category getters
-     */
-
-    public static List<Integer> getCategoryColorsById(List<String> idList) {
-        // TODO: Метод принимает на вход ArrayList с id категорий и отдаёт ArrayList с String`ами цветов
-        List colorList = new ArrayList<Integer>();
-        int[] categories = {R.color.categoryMeat, R.color.categoryFruit, R.color.categoryGrass, R.color.categoryVegetable, R.color.categorySpice, R.color.categorySweet};
-        for (int i = 0; i < idList.size(); ++i) {
-            colorList.add(categories[Integer.valueOf(idList.get(i))]);
+        String[][] returnElement = {{}, {}, {}, {}, {}};
+        try {
+            returnElement = databaseThread.get();
+        } catch (Exception e) {
+            Toast.makeText(context, "Something went wrong", Toast.LENGTH_LONG).show();
         }
-        return colorList;
+        return returnElement;
     }
 
-    public static List<Integer> getCategoryIconsById(List<String> idList) {
-        // TODO: Метод принимает на вход ArrayList с id категорий и отдаёт ArrayList с String`ами ссылок на иконки
-        List iconList = new ArrayList<Integer>();
-        int[] iconURLs = {R.drawable.category_meat, R.drawable.category_fruit, R.drawable.category_grass, R.drawable.category_vegetable, R.drawable.category_spice, R.drawable.category_sweet};
-        for (int i = 0; i < idList.size(); ++i) {
-            iconList.add(iconURLs[Integer.valueOf(idList.get(i))]);
-        }
-        return iconList;
-    }
-
-    /**
-     * Product adders/removers
-     */
-
-    public void addProduct(int id, int weight){
+    public static void addProduct(final int id, final String name, final String weight, final int catID, final String date, final Context context){
         // TODO: Метод принимает на вход id продукта и вес, после чего добавляет этот продукт в DB
+        class DatabaseThread extends AsyncTask<Void, Void, String> {
+            @Override
+            protected String doInBackground(Void... voids) {
+                DataBaseHelper dbHelper = new DataBaseHelper(context);
+                SQLiteDatabase db;
+                try {
+                    db = dbHelper.getWritableDatabase();
+                }
+                catch (SQLiteException ex){
+                    db = dbHelper.getReadableDatabase();
+                }
+
+                ContentValues insertData = new ContentValues();
+                insertData.put("productID", id);
+                insertData.put("productName", name);
+                insertData.put("productWeight", weight);
+                insertData.put("categoryID", catID);
+                insertData.put("addDate", date);
+                db.insert(DataBaseHelper.TABLE_NAME, null, insertData);
+                return null;
+            }
+        }
+        DatabaseThread databaseThread = new DatabaseThread();
+        databaseThread.execute();
     }
 
-    public void removeProduct(int id){
+    public static void removeProduct(final int id, final Context context){
         // TODO: Метод принимает на вход id продукта, после чего удаляет его из DB
+        class DatabaseThread extends AsyncTask<Void, Void, String> {
+            @Override
+            protected String doInBackground(Void... voids) {
+                DataBaseHelper dbHelper = new DataBaseHelper(context);
+                SQLiteDatabase db;
+                try {
+                    db = dbHelper.getWritableDatabase();
+                }
+                catch (SQLiteException ex){
+                    db = dbHelper.getReadableDatabase();
+                }
+
+                db.delete(DataBaseHelper.TABLE_NAME, "productID = ?", new String[] {String.valueOf(id)});
+                return null;
+            }
+        }
+        DatabaseThread databaseThread = new DatabaseThread();
+        databaseThread.execute();
+    }
+
+    /**
+     * Геттеры цветов и иконок для RecyclerView
+     */
+
+    static int getCategoryColorsById(String id) {
+        int[] categories = {R.color.categoryMeat, R.color.categoryFruit, R.color.categoryGrass, R.color.categoryVegetable, R.color.categorySpice, R.color.categorySweet};
+        return categories[Integer.valueOf(id)];
+    }
+
+    static int getCategoryIconsById(String id) {
+        int[] iconURLs = {R.drawable.category_meat, R.drawable.category_fruit, R.drawable.category_grass, R.drawable.category_vegetable, R.drawable.category_spice, R.drawable.category_sweet};
+        return iconURLs[Integer.valueOf(id)];
     }
 }

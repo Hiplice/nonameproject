@@ -5,47 +5,47 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import javax.net.ssl.HttpsURLConnection;
-
-public class NetworkRequests extends AsyncTask<String, Void, String> {
+public class NetworkRequests extends AsyncTask<String, String, String> {
 
     private Context context;
 
     public NetworkRequests(Context con) {
-        this.context = con;
+        context = con;
     }
 
     @Override
     protected String doInBackground(String... uri) {
+        StringBuffer response = new StringBuffer();
         try {
             URL url = new URL(uri[0]);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
-
-            int responseCode = connection.getResponseCode();
-            Toast toast = Toast.makeText(context, "Код ответа: " + String.valueOf(responseCode), Toast.LENGTH_SHORT);
-            toast.show();
+            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String inputLine;
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
         } catch (MalformedURLException e) {
-            Toast toast = Toast.makeText(context, String.valueOf(e), Toast.LENGTH_SHORT);
-            toast.show();
+            publishProgress(String.valueOf(e));
         } catch (IOException e) {
-            Toast toast = Toast.makeText(context, String.valueOf(e), Toast.LENGTH_SHORT);
-            toast.show();
-        } catch (Exception e) {
-            Toast toast = Toast.makeText(context, String.valueOf(e), Toast.LENGTH_SHORT);
-            toast.show();
+            publishProgress(String.valueOf(e));
         }
-        return "";
+        return response.toString();
     }
 
     @Override
-    protected void onPostExecute(String result) {
-        super.onPostExecute(result);
-        //Do anything with response..*/
+    protected void onProgressUpdate(String... values) {
+        super.onProgressUpdate(values);
+
+        Toast toast = Toast.makeText(context, values[0], Toast.LENGTH_SHORT);
+        toast.show();
     }
 }
