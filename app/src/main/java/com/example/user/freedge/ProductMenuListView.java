@@ -12,21 +12,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.List;
-
-
 public class ProductMenuListView extends RecyclerView.Adapter<ProductMenuListView.ViewHolder> {
 
-    private List<List<String>> mDataList;
-    List<Integer> colorResources;
-    List<Integer> iconResources;
-    Context context;
+    private String[][] mDataList;
+    private Context context;
 
-    LinearLayout menuElementRectangle;
-    ImageView categoryIcon;
-    TextView boldProductName;
-    TextView productAddDate;
-    TextView productWeight;
+    private LinearLayout menuElementRectangle;
+    private ImageView categoryIcon;
+    private TextView boldProductName;
+    private TextView productAddDate;
+    private TextView productWeight;
 
     @NonNull
     @Override
@@ -39,24 +34,21 @@ public class ProductMenuListView extends RecyclerView.Adapter<ProductMenuListVie
 
     @Override
     public void onBindViewHolder(@NonNull ProductMenuListView.ViewHolder viewHolder, int position) {
-        boldProductName.setText(mDataList.get(1).get(position));
-        productAddDate.setText(mDataList.get(3).get(position));
-        productWeight.setText(mDataList.get(2).get(position));
-        categoryIcon.setImageResource(iconResources.get(position));
-        menuElementRectangle.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, colorResources.get(position))));
+        boldProductName.setText(mDataList[position][1]);
+        productAddDate.setText(mDataList[position][4]);
+        productWeight.setText(mDataList[position][2]);
+        categoryIcon.setImageResource(DataHandler.getCategoryIconsById(mDataList[position][3]));
+        menuElementRectangle.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, DataHandler.getCategoryColorsById(mDataList[position][3]))));
     }
 
-    public ProductMenuListView(Context context, List<List<String>> dataList) {
-        mDataList = dataList;
+    public ProductMenuListView(Context context, String[][] dataList) {
+        mDataList = dataList; // [_ID, productID, productName, productWeight, categoryID, addDate]
         this.context = context;
-        List<String> categoryID = mDataList.get(4);
-        colorResources = DataHandler.getCategoryColorsById(categoryID);
-        iconResources = DataHandler.getCategoryIconsById(categoryID);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
 
-        public ViewHolder(View itemView) {
+        private ViewHolder(View itemView) {
             super(itemView);
 
             menuElementRectangle = itemView.findViewById(R.id.menuElem);
@@ -69,6 +61,6 @@ public class ProductMenuListView extends RecyclerView.Adapter<ProductMenuListVie
 
     @Override
     public int getItemCount() {
-        return mDataList.get(1).size();
+        return mDataList.length;
     }
 }

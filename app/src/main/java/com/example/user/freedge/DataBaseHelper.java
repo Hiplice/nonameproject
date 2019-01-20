@@ -6,24 +6,29 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
+    public static String[] columnNames = {"productID", "productName", "productWeight", "categoryID", "addDate"};
     private static final String DATABASE_NAME = "fridge.db";
+    public static final String TABLE_NAME = "localproductlist";
     private static final int DATABASE_VERSION = 1;
-    private Context context;
 
-    public DataBaseHelper(Context context) {
-
+    DataBaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        this.context = context;
-
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        
+        db.execSQL("CREATE TABLE localproductlist (" +
+                "  productID int NOT NULL," +
+                "  productName text NOT NULL," +
+                "  productWeight text NOT NULL," +
+                "  categoryID int NOT NULL," +
+                "  addDate text NOT NULL" +
+                ")");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL("DROP TABLE `localproductlist`");
+        onCreate(db);
     }
 }

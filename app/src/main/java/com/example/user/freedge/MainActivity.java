@@ -102,9 +102,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onButton(View view){
-        final Toast toast = Toast.makeText(getApplicationContext(),
-                "Заработало", Toast.LENGTH_SHORT);
-        toast.show();
+        DataHandler.addProduct(2, "Картошка", "200 г", 3, "12.10.2018", this);
     }
-
 }
