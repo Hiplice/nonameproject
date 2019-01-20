@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.user.freedge.Fragments.ProductsFragment;
 import com.example.user.freedge.Fragments.RecipesFragment;
+import com.example.user.freedge.Fragments.RecipesListFragment;
 import com.example.user.freedge.Fragments.SettingsFragment;
 
 
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     android.app.FragmentTransaction transaction;
     RecipesFragment recipes;
     ProductsFragment products;
+    RecipesListFragment listFragment;
     SettingsFragment settings;
     TextView toolBarText;
 
@@ -73,6 +75,30 @@ public class MainActivity extends AppCompatActivity {
         transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.contentContainer, products);
         transaction.commit();
+    }
+
+    public void onAvailable(View view){
+        listFragment = new RecipesListFragment();
+        transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.contentContainer, listFragment);
+        transaction.commit();
+        toolBarText.setText(R.string.available);
+    }
+
+    public void onList(View view){
+        listFragment = new RecipesListFragment();
+        transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.contentContainer, listFragment);
+        transaction.commit();
+        toolBarText.setText(R.string.list);
+    }
+
+    public void onFavourites(View view){
+        listFragment = new RecipesListFragment();
+        transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.contentContainer, listFragment);
+        transaction.commit();
+        toolBarText.setText(R.string.favourites);
     }
 
     public void onButton(View view){
