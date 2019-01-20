@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
                 android:textAlignment="center"
-                android:textColor="@color/projectWhite"
+                android:textColor="@color/projectDark"
                 android:textSize="18sp" />
 
         </Toolbar>
@@ -53,7 +53,7 @@
         android:background="@color/colorPrimary"
         app:elevation="4dp"
         app:itemHorizontalTranslationEnabled="true"
-        app:itemIconTint="@color/projectWhite"
+        app:itemIconTint="@color/Grey"
         app:itemTextColor="@color/projectWhite"
         app:labelVisibilityMode="unlabeled"
         app:menu="@menu/bottom_navigation_menu" />
