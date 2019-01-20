@@ -1,4 +1,4 @@
-package com.example.user.freedge;
+package com.example.user.freedge.RecyclerViewHandlers;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -11,6 +11,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.user.freedge.DataHandler;
+import com.example.user.freedge.R;
 
 public class ProductMenuListView extends RecyclerView.Adapter<ProductMenuListView.ViewHolder> {
 

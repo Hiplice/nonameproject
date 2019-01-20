@@ -85,4 +85,6 @@
     <string name="available">Доступные рецепты</string>
     <string name="list">Все рецепты</string>
     <string name="favourites">Избранное</string>
+    <string name="selections">Подборки</string>
+
 </resources>

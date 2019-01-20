@@ -14,6 +14,8 @@ import com.example.user.freedge.Fragments.RecipesFragment;
 import com.example.user.freedge.Fragments.RecipesListFragment;
 import com.example.user.freedge.Fragments.SettingsFragment;
 
+import java.util.Map;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -77,29 +79,28 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
     }
 
-    public void onAvailable(View view){
+    public void onClickRecipeMenu(View view) {
         listFragment = new RecipesListFragment();
         transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.contentContainer, listFragment);
         transaction.commit();
-        toolBarText.setText(R.string.available);
+
+        switch (view.getId()) {
+            case R.id.available_recipes:
+                toolBarText.setText("Доступные рецепты");
+                break;
+            case R.id.all_recipes:
+                toolBarText.setText("Все рецепты");
+                break;
+            case R.id.favourites:
+                toolBarText.setText("Избранное");
+                break;
+            case R.id.selections:
+                toolBarText.setText("Подборки");
+                break;
+        }
     }
 
-    public void onList(View view){
-        listFragment = new RecipesListFragment();
-        transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.contentContainer, listFragment);
-        transaction.commit();
-        toolBarText.setText(R.string.list);
-    }
-
-    public void onFavourites(View view){
-        listFragment = new RecipesListFragment();
-        transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.contentContainer, listFragment);
-        transaction.commit();
-        toolBarText.setText(R.string.favourites);
-    }
 
     public void onButton(View view){
         DataHandler.addProduct(2, "Картошка", "200 г", 3, "12.10.2018", this);

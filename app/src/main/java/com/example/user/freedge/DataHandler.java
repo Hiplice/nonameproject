@@ -123,13 +123,30 @@ public class DataHandler {
      * Геттеры цветов и иконок для RecyclerView
      */
 
-    static int getCategoryColorsById(String id) {
+    public static int getCategoryColorsById(String id) {
         int[] categories = {R.color.categoryMeat, R.color.categoryFruit, R.color.categoryGrass, R.color.categoryVegetable, R.color.categorySpice, R.color.categorySweet};
         return categories[Integer.valueOf(id)];
     }
 
-    static int getCategoryIconsById(String id) {
+    public static int getCategoryIconsById(String id) {
         int[] iconURLs = {R.drawable.category_meat, R.drawable.category_fruit, R.drawable.category_grass, R.drawable.category_vegetable, R.drawable.category_spice, R.drawable.category_sweet};
         return iconURLs[Integer.valueOf(id)];
+    }
+
+    public static String[] getFirstNRecipes(int n, Context context) {
+
+        String[] recipes = new String[] {"Лазанья с сыром", "Томатный суп с креветками"};
+        return recipes;
+        /*NetworkRequests request = new NetworkRequests(context);
+        request.execute("95.163.181.200/fridge/?query=search&count=" + String.valueOf(n) + "&str=");
+
+        String response;
+        try {
+            response = request.get();
+        } catch (Exception e) {
+
+        }*/
+
+
     }
 }
