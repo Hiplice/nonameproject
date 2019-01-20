@@ -82,4 +82,7 @@
     <string name="appbar_products">Продукты</string>
     <string name="appbar_recipes">Рецепты</string>
     <string name="appbar_settings">Настройки</string>
+    <string name="available">Доступные рецепты</string>
+    <string name="list">Все рецепты</string>
+    <string name="favourites">Избранное</string>
 </resources>
