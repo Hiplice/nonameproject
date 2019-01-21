@@ -56,7 +56,8 @@ public class DataHandler {
                         returnRequest[i][j] = requestList.get(i).get(j);
                     }
                 }
-
+                cursor.close();
+                db.close();
                 return returnRequest;
             }
         }
@@ -69,6 +70,7 @@ public class DataHandler {
         } catch (Exception e) {
             Toast.makeText(context, "Something went wrong", Toast.LENGTH_LONG).show();
         }
+
         return returnElement;
     }
 
@@ -93,6 +95,7 @@ public class DataHandler {
                 insertData.put("categoryID", catID);
                 insertData.put("addDate", date);
                 db.insert(DataBaseHelper.TABLE_NAME, null, insertData);
+                db.close();
                 return null;
             }
         }
@@ -115,6 +118,7 @@ public class DataHandler {
                 }
 
                 db.delete(DataBaseHelper.TABLE_NAME, "productID = ?", new String[] {String.valueOf(id)});
+                db.close();
                 return null;
             }
         }
