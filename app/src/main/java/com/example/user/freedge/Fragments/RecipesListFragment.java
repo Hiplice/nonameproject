@@ -60,6 +60,7 @@ RecipesListFragment extends Fragment {
                     mRecyclerView.setAdapter(mAdapter);
                 } else {
                     mAdapter = new RecipeListView(context, DataHandler.getFirstNRecipes(30, context));
+                    mRecyclerView.setAdapter(mAdapter);
                 }
             }
         });
