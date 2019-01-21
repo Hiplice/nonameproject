@@ -1,7 +1,6 @@
 package com.example.user.freedge;
 
 
-import android.app.FragmentManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.app.Fragment;
@@ -11,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.user.freedge.Fragments.AddProductFragment;
 import com.example.user.freedge.Fragments.ProductsFragment;
 import com.example.user.freedge.Fragments.RecipesFragment;
 import com.example.user.freedge.Fragments.RecipesListFragment;
@@ -75,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+    // TODO: Активити закрывается, если нажать Back при пустом стеке;
     @Override
     public void onBackPressed() {
         if (!stack.empty()) {
@@ -133,6 +135,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onButton(View view){
+        AddProductFragment addProductFragment = new AddProductFragment();
+        addProductFragment.show(getFragmentManager(),"dialog");
         DataHandler.addProduct(2, "Картошка", "200 г", 3, "12.10.2018", this);
     }
 }

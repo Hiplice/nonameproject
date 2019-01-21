@@ -1,5 +1,8 @@
 package com.example.user.freedge.Fragments;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,13 +13,16 @@ import android.view.ViewGroup;
 
 import com.example.user.freedge.R;
 
-public class AddProductFragment extends Fragment {
-
-    @Nullable
+public class AddProductFragment extends DialogFragment {
+    @NonNull
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View addProductView = inflater.inflate(R.layout.add_product_fragment, container, false);
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-        return addProductView;
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Title")
+               .setMessage("Message");
+        return builder.create();
     }
+
+
 }
