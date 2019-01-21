@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,14 +42,25 @@ RecipesListFragment extends Fragment {
         mAdapter = new RecipeListView(context, DataHandler.getFirstNRecipes(30, context));
         mRecyclerView.setAdapter(mAdapter);
 
-        recipeSearch.setOnKeyListener(new View.OnKeyListener() {
+        recipeSearch.addTextChangedListener(new TextWatcher() {
             @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
                 if (recipeSearch.getText().length() > 2) {
                     mAdapter = new RecipeListView(context, DataHandler.searchFirstNRecipes(30,String.valueOf(recipeSearch.getText()), context));
                     mRecyclerView.setAdapter(mAdapter);
+                } else {
+                    mAdapter = new RecipeListView(context, DataHandler.getFirstNRecipes(30, context));
                 }
-                return false;
             }
         });
 

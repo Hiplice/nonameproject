@@ -53,7 +53,6 @@ public class ProductMenuListView extends RecyclerView.Adapter<ProductMenuListVie
 
         private ViewHolder(View itemView) {
             super(itemView);
-
             menuElementRectangle = itemView.findViewById(R.id.menuElem);
             categoryIcon = itemView.findViewById(R.id.categoryImage);
             boldProductName = itemView.findViewById(R.id.boldProductName);
