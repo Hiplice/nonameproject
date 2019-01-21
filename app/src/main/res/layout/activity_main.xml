@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/background_light"
-    tools:context=".MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
     <!-- Прописан Toolbar -->
     <android.support.design.widget.AppBarLayout
@@ -19,7 +18,7 @@
             android:id="@+id/upperToolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
+            android:background="@color/Grey"
             android:requiresFadingEdge="none">
 
             <TextView
@@ -28,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
                 android:textAlignment="center"
-                android:textColor="@color/projectDark"
+                android:textColor="@color/colorPrimary"
                 android:textSize="18sp" />
 
         </Toolbar>
@@ -50,10 +49,10 @@
         android:id="@+id/navigationMenu"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
+        android:background="@color/Grey"
         app:elevation="4dp"
         app:itemHorizontalTranslationEnabled="true"
-        app:itemIconTint="@color/Grey"
+        app:itemIconTint="@color/colorPrimary"
         app:itemTextColor="@color/projectWhite"
         app:labelVisibilityMode="unlabeled"
         app:menu="@menu/bottom_navigation_menu" />

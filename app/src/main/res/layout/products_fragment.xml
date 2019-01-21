@@ -2,6 +2,7 @@
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -21,10 +22,10 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:onClick="onButton"
-        app:backgroundTint="@color/colorPrimary"
+        app:backgroundTint="@color/Grey"
         app:layout_behavior="com.example.user.freedge.FloatOnScroll"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/plus_icon" />
+        app:srcCompat="@drawable/plus" />
 
 </android.support.design.widget.CoordinatorLayout>

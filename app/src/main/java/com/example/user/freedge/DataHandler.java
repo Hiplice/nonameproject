@@ -157,4 +157,28 @@ public class DataHandler {
 
         return returnRecipes;
     }
+
+    public static String[] searchFirstNRecipes(int n, String str, Context context) {
+
+        String[] recipes = new String[] {"Лазанья с сыром", "Томатный суп с креветками"};
+        NetworkRequests request = new NetworkRequests(context);
+        request.execute("http://95.163.181.200/fridge/?query=search&count=" + String.valueOf(n) + "&str=" + String.valueOf(str));
+
+        JSONArray jsonArray;
+        String[] returnRecipes = {};
+        try {
+            String response = request.get();
+            jsonArray = new JSONArray(response);
+            returnRecipes = new String[jsonArray.length()];
+            for (int i = 0; i < jsonArray.length(); ++i) {
+                returnRecipes[i] =  jsonArray.getJSONObject(i).getString("name");
+            }
+        } catch (Exception e) {
+            Toast.makeText(context, "Что-то пошло не так :c", Toast.LENGTH_LONG);
+        }
+
+        return returnRecipes;
+    }
+
+
 }

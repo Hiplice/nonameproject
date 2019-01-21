@@ -1,11 +1,13 @@
 package com.example.user.freedge;
 
+import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -100,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
-
 
     public void onButton(View view){
         DataHandler.addProduct(2, "Картошка", "200 г", 3, "12.10.2018", this);
