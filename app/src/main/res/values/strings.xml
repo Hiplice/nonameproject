@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Fridge</string>
+    <string name="app_name">Freedge</string>
     <string name="title_activity_recipe">RecipeActivity</string>
     <string name="title_activity_settings">Settings</string>
 
