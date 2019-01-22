@@ -16,6 +16,8 @@ import java.util.ArrayList;
 
 public class DataHandler {
 
+    public static String recipesText;
+
     /**
      * Метод делает запрос в локальную ДБ и возвращает двумерный массив  [productID, productName, productWeight, categoryID, addDate]
      **/
@@ -163,7 +165,7 @@ public class DataHandler {
     public static String[] getRecipeById(int id, Context context) {
 
         NetworkRequests request = new NetworkRequests(context);
-        request.execute("http://95.163.181.200/fridge/?query=get_recipe&i=" + String.valueOf(id));
+        request.execute("http://95.163.181.200/fridge/?query=get_recipe&id=" + String.valueOf(id));
 
         JSONObject jsonObject;
         String[] returnRecipes = {};
