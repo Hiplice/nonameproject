@@ -20,5 +20,6 @@ public class ProductDialog extends AppCompatActivity {
         mAutoCompleteTextView = findViewById(R.id.product);
         mAutoCompleteTextView.setAdapter(new ArrayAdapter<>(this,
                 android.R.layout.simple_dropdown_item_1line, mData[1]));
+
     }
 }
