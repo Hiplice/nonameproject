@@ -1,7 +1,6 @@
 package com.example.user.freedge;
 
-import android.app.Activity;
-import android.os.AsyncTask;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.app.Fragment;
@@ -10,9 +9,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.user.freedge.Fragments.AddProductFragment;
 import com.example.user.freedge.Fragments.ProductsFragment;
 import com.example.user.freedge.Fragments.RecipesFragment;
 import com.example.user.freedge.Fragments.RecipesListFragment;
@@ -25,12 +22,11 @@ public class MainActivity extends AppCompatActivity {
     android.app.FragmentTransaction transaction;
     RecipesFragment recipes;
     ProductsFragment products;
-    public static Fragment currentFragment;
+    Fragment currentFragment;
     RecipesListFragment listFragment;
     SettingsFragment settings;
     TextView toolBarText;
-    public static Stack<Fragment> stack;
-    MainActivity myApplication;
+    Stack<Fragment> stack;
 
     public static String[] availableProductID;
     public static String[][] allProducts;
@@ -39,8 +35,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        loadResources();
 
         //Stack фрагментов - инициализация
         stack = new Stack<Fragment>();
@@ -143,8 +137,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onButton(View view){
-        AddProductFragment addProductFragment = new AddProductFragment();
-        addProductFragment.show(getFragmentManager(),"dialog");
+        Intent intent = new Intent(MainActivity.this,  ProductDialog.class);
+        startActivity(intent);
     }
 
     private void loadResources() {
