@@ -181,6 +181,27 @@ public class DataHandler {
         return returnRecipes;
     }
 
+    public static String[][] getAllProducts(Context context) {
+
+        NetworkRequests request = new NetworkRequests(context);
+        request.execute("http://95.163.181.200/fridge/?query=get_all_food");
+
+        JSONArray jsonArray;
+        String[][] returnRecipes = {};
+        try {
+            String response = request.get();
+            jsonArray = new JSONArray(response);
+            returnRecipes = new String[2][jsonArray.length()];
+            for (int i = 0; i < jsonArray.length(); ++i) {
+                returnRecipes[0][i] =  jsonArray.getJSONObject(i).getString("id");
+                returnRecipes[1][i] =  jsonArray.getJSONObject(i).getString("name");
+            }
+        } catch (Exception e) {
+            Toast.makeText(context, "Что-то пошло не так :c", Toast.LENGTH_LONG);
+        }
+
+        return returnRecipes;
+    }
     /*public static String[][] loadAvailableRecipes(Context context) {
         String[][] availableProducts = getAvailableProducts(context);
         String[][] availableProductData = new String[2][availableProducts.length];

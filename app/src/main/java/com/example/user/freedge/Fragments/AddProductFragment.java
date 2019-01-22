@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 
+import com.example.user.freedge.DataHandler;
 import com.example.user.freedge.R;
 
 public class AddProductFragment extends DialogFragment {
@@ -26,10 +27,9 @@ public class AddProductFragment extends DialogFragment {
 
         // Set an EditText view to get user input
         AutoCompleteTextView autoCompleteTextView = new AutoCompleteTextView(getActivity());
-        final String[] mCats = { "Мурзик", "Рыжик", "Барсик", "Борис",
-                "Мурзилка", "Мурка" };
+        final String[][] mData = DataHandler.getAllProducts(getContext());
         autoCompleteTextView.setAdapter(new ArrayAdapter<>(getActivity(),
-                android.R.layout.simple_dropdown_item_1line, mCats));
+                android.R.layout.simple_dropdown_item_1line, mData[1]));
         final EditText input = new EditText(getActivity());
         alert.setView(autoCompleteTextView);
 
