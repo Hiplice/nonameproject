@@ -1,5 +1,6 @@
 package com.example.user.freedge;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.app.Fragment;
@@ -9,11 +10,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.user.freedge.Fragments.AddProductFragment;
 import com.example.user.freedge.Fragments.ProductsFragment;
 import com.example.user.freedge.Fragments.RecipesFragment;
 import com.example.user.freedge.Fragments.RecipesListFragment;
-import com.example.user.freedge.Fragments.RecipesTextFragment;
 import com.example.user.freedge.Fragments.SettingsFragment;
 import java.util.Stack;
 
@@ -134,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onButton(View view){
-        AddProductFragment addProductFragment = new AddProductFragment();
-        addProductFragment.show(getFragmentManager(),"dialog");
+        Intent intent = new Intent(MainActivity.this,  ProductDialog.class);
+        startActivity(intent);
     }
 }
