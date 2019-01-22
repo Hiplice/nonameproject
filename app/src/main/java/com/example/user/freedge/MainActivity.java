@@ -1,22 +1,22 @@
 package com.example.user.freedge;
 
-import android.app.Activity;
+
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.user.freedge.Fragments.AddProductFragment;
 import com.example.user.freedge.Fragments.ProductsFragment;
 import com.example.user.freedge.Fragments.RecipesFragment;
 import com.example.user.freedge.Fragments.RecipesListFragment;
 import com.example.user.freedge.Fragments.SettingsFragment;
 
-import java.util.Map;
+import java.util.Stack;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -24,14 +24,18 @@ public class MainActivity extends AppCompatActivity {
     android.app.FragmentTransaction transaction;
     RecipesFragment recipes;
     ProductsFragment products;
+    Fragment currentFragment;
     RecipesListFragment listFragment;
     SettingsFragment settings;
     TextView toolBarText;
+    Stack<Fragment> stack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        stack = new Stack<Fragment>();
 
         // Инициализируем элементы интерфейса
         toolBarText = findViewById(R.id.toolBarText);
@@ -47,26 +51,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.action_products) {
-                    // Меняем надпись на тулбаре
+                    check(products);
+                    //Меняем надпись на тулбаре
                     toolBarText.setText(R.string.appbar_products);
-                    // Устанавливаем активити в фрагменте
-                    transaction = getFragmentManager().beginTransaction();
-                    transaction.replace(R.id.contentContainer, products);
-                    transaction.commit();
                 } else if (menuItem.getItemId() == R.id.action_recipes) {
+                    check(recipes);
                     // Меняем надпись на тулбаре
                     toolBarText.setText(R.string.appbar_recipes);
-                    // Меняем активити в фрагменте
-                    transaction = getFragmentManager().beginTransaction();
-                    transaction.replace(R.id.contentContainer, recipes);
-                    transaction.commit();
                 } else if (menuItem.getItemId() == R.id.action_settings) {
+                    check(settings);
                     // Меняем надпись на тулбаре
                     toolBarText.setText(R.string.appbar_settings);
-                    // Меняем активити в фрагменте
-                    transaction = getFragmentManager().beginTransaction();
-                    transaction.replace(R.id.contentContainer, settings);
-                    transaction.commit();
                 }
                 return false;
             }
@@ -76,16 +71,52 @@ public class MainActivity extends AppCompatActivity {
         toolBarText.setText(R.string.appbar_products);
 
         // Устанавливаем активити в фрагменте
-        transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.contentContainer, products);
-        transaction.commit();
+        check(products);
+    }
+
+
+
+    // TODO: Активити закрывается, если нажать Back при пустом стеке;
+    @Override
+    public void onBackPressed() {
+        if (!stack.empty()) {
+            transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.contentContainer, stack.peek());
+            transaction.commit();
+            //TODO: При возврате на ListFragment не меняется текст Toolbar (пока это не тестится)
+            if (stack.peek() == products) toolBarText.setText(R.string.appbar_products);
+            if (stack.peek() == recipes) toolBarText.setText(R.string.appbar_recipes);
+            if (stack.peek() == settings) toolBarText.setText(R.string.appbar_settings);
+            currentFragment = stack.peek();
+            stack.pop();
+        }
+
+    }
+
+
+    // Делает проверку на повторное нажатие одной и той же кнопки
+    public void check(Fragment f){
+        if (stack.empty()){
+            transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.contentContainer, f);
+            transaction.commit();
+            stack.push(currentFragment);
+            currentFragment = f;
+        }
+        else {
+            if (f != currentFragment) {
+                transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.contentContainer, f);
+                transaction.commit();
+                stack.push(currentFragment);
+                currentFragment = f;
+            }
+        }
     }
 
     public void onClickRecipeMenu(View view) {
         listFragment = new RecipesListFragment();
-        transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.contentContainer, listFragment);
-        transaction.commit();
+        check(listFragment);
 
         switch (view.getId()) {
             case R.id.available_recipes:
@@ -104,6 +135,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onButton(View view){
+        AddProductFragment addProductFragment = new AddProductFragment();
+        addProductFragment.show(getFragmentManager(),"dialog");
         DataHandler.addProduct(2, "Картошка", "200 г", 3, "12.10.2018", this);
     }
 }
