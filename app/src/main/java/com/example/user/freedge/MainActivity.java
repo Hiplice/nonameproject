@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Stack фрагментов - инициализация
         stack = new Stack<Fragment>();
 
         // Инициализируем элементы интерфейса
@@ -48,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationMenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                transaction = getFragmentManager().beginTransaction();
                 if (menuItem.getItemId() == R.id.action_products) {
                     check(products);
                     //Меняем надпись на тулбаре
@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
                     // Меняем надпись на тулбаре
                     toolBarText.setText(R.string.appbar_settings);
                 }
-                transaction.commit();
                 return false;
             }
         });
@@ -133,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
+
     public void onButton(View view){
         AddProductFragment addProductFragment = new AddProductFragment();
         addProductFragment.show(getFragmentManager(),"dialog");
