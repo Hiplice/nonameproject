@@ -48,7 +48,7 @@ public class RecipeListView extends RecyclerView.Adapter<RecipeListView.ViewHold
                 TextView toolBarText = mainActivity.findViewById(R.id.toolBarText);
                 toolBarText.setText(mDataList[1][position]);
 
-                //DataHandler.recipesText = DataHandler.getRecipeById(123, context);
+                DataHandler.recipesText = DataHandler.getRecipeById(Integer.valueOf(mDataList[0][position]), context);
 
                 FragmentManager manager = ((AppCompatActivity)context).getFragmentManager();
                 transaction = manager.beginTransaction();
