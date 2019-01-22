@@ -16,29 +16,26 @@ import com.example.user.freedge.DataHandler;
 import com.example.user.freedge.R;
 import com.example.user.freedge.RecyclerViewHandlers.RecipeListView;
 
-public class
-RecipesListFragment extends Fragment {
+public class RecipesListFragment extends Fragment {
 
+    private android.app.FragmentTransaction transaction;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private Context context;
+    TextView toolBarText;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View recipeView = inflater.inflate(R.layout.recipes_list_fragment, container, false);
+        toolBarText = getActivity().findViewById(R.id.toolBarText);
 
+        // Инициализирую ресайклер
+        initRecyclerView(recipeView);
+
+        // Устанавливаю слушаель на поиск
         final EditText recipeSearch = recipeView.findViewById(R.id.recipeSearch);
-
-        mRecyclerView = recipeView.findViewById(R.id.recipeRecycler);
-        context = recipeView.getContext();
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(context);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new RecipeListView(context, DataHandler.getFirstNRecipes(30, context));
-        mRecyclerView.setAdapter(mAdapter);
-
         recipeSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -52,16 +49,29 @@ RecipesListFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (recipeSearch.getText().length() > 2) {
-                    mAdapter = new RecipeListView(context, DataHandler.searchFirstNRecipes(30,String.valueOf(recipeSearch.getText()), context));
-                    mRecyclerView.setAdapter(mAdapter);
-                } else {
-                    mAdapter = new RecipeListView(context, DataHandler.getFirstNRecipes(30, context));
-                    mRecyclerView.setAdapter(mAdapter);
-                }
+                mAdapter = new RecipeListView(context, DataHandler.searchFirstNRecipes(30,String.valueOf(recipeSearch.getText()), context));
+                mRecyclerView.setAdapter(mAdapter);
             }
         });
 
         return recipeView;
+    }
+
+    private void initRecyclerView(View view) {
+        mRecyclerView = view.findViewById(R.id.recipeRecycler);
+        context = view.getContext();
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(context);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        if (toolBarText.getText() == "Все рецепты") {
+            mAdapter = new RecipeListView(context, DataHandler.getFirstNRecipes(30, context));
+        } else if (toolBarText.getText() == "Доступные рецепты") {
+
+        } else if (toolBarText.getText() == "Избранное") {
+
+        } else if (toolBarText.getText() == "Подборки") {
+
+        }
+        mRecyclerView.setAdapter(mAdapter);
     }
 }

@@ -1,6 +1,5 @@
 package com.example.user.freedge;
 
-
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.app.Fragment;
@@ -14,10 +13,9 @@ import com.example.user.freedge.Fragments.AddProductFragment;
 import com.example.user.freedge.Fragments.ProductsFragment;
 import com.example.user.freedge.Fragments.RecipesFragment;
 import com.example.user.freedge.Fragments.RecipesListFragment;
+import com.example.user.freedge.Fragments.RecipesTextFragment;
 import com.example.user.freedge.Fragments.SettingsFragment;
-
 import java.util.Stack;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationMenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                transaction = getFragmentManager().beginTransaction();
                 if (menuItem.getItemId() == R.id.action_products) {
                     check(products);
                     //Меняем надпись на тулбаре
@@ -63,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
                     // Меняем надпись на тулбаре
                     toolBarText.setText(R.string.appbar_settings);
                 }
+                transaction.commit();
                 return false;
             }
         });
@@ -133,10 +133,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
-
     public void onButton(View view){
         AddProductFragment addProductFragment = new AddProductFragment();
         addProductFragment.show(getFragmentManager(),"dialog");
-        DataHandler.addProduct(2, "Картошка", "200 г", 3, "12.10.2018", this);
     }
 }

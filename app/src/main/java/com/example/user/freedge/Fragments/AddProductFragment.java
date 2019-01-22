@@ -10,7 +10,6 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.user.freedge.R;
 
 public class AddProductFragment extends DialogFragment {
@@ -23,6 +22,4 @@ public class AddProductFragment extends DialogFragment {
                .setMessage("Message");
         return builder.create();
     }
-
-
 }
