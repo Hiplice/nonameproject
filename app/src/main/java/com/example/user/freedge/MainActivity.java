@@ -1,5 +1,6 @@
 package com.example.user.freedge;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.app.Fragment;
@@ -9,7 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.user.freedge.Fragments.AddProductFragment;
 import com.example.user.freedge.Fragments.ProductsFragment;
 import com.example.user.freedge.Fragments.RecipesFragment;
 import com.example.user.freedge.Fragments.RecipesListFragment;
@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     Fragment currentFragment;
     RecipesListFragment listFragment;
     SettingsFragment settings;
+    RecipesTextFragment recipesTextFragment;
     TextView toolBarText;
     Stack<Fragment> stack;
 
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         products = new ProductsFragment();
         recipes = new RecipesFragment();
         settings = new SettingsFragment();
+        recipesTextFragment = new RecipesTextFragment();
 
         // Инициплизируем обработчик нажатия на меню
         bottomNavigationMenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -105,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         else {
             if (f != currentFragment) {
                 transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.contentContainer, f);
+                transaction.replace(R.id.contentContainer, rec);
                 transaction.commit();
                 stack.push(currentFragment);
                 currentFragment = f;
@@ -115,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickRecipeMenu(View view) {
         listFragment = new RecipesListFragment();
-        check(listFragment);
+        check(recipesTextFragment);
 
         switch (view.getId()) {
             case R.id.available_recipes:
@@ -134,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onButton(View view){
-        AddProductFragment addProductFragment = new AddProductFragment();
-        addProductFragment.show(getFragmentManager(),"dialog");
+        Intent intent = new Intent(MainActivity.this,  ProductDialog.class);
+        startActivity(intent);
     }
 }

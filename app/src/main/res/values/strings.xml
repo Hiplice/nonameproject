@@ -86,5 +86,7 @@
     <string name="list">Все рецепты</string>
     <string name="favourites">Избранное</string>
     <string name="selections">Подборки</string>
+    <string name="input_product">введите продукт</string>
+    <string name="product_count">веедите колисчество</string>
 
 </resources>
