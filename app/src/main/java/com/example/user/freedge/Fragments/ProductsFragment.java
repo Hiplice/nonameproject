@@ -22,18 +22,22 @@ public class ProductsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         View productsView = inflater.inflate(R.layout.products_fragment, container, false);
 
-        mRecyclerView = productsView.findViewById(R.id.productRecyclerView);
-        context = productsView.getContext();
+        // Инициализирую ресайклер
+        initRecyclerView(productsView);
+
+        return productsView;
+    }
+
+    private void initRecyclerView(View view) {
+        mRecyclerView = view.findViewById(R.id.productRecyclerView);
+        context = view.getContext();
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(context);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new ProductMenuListView(context, DataHandler.getAvailableProducts(context));
         mRecyclerView.setAdapter(mAdapter);
-
-        return productsView;
     }
 }
 
