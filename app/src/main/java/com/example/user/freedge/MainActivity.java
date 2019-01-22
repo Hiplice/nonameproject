@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     RecipesListFragment listFragment;
     SettingsFragment settings;
     TextView toolBarText;
-    Stack<Fragment> stack;
+    public static Stack<Fragment> stack;
 
     public static String[] availableProductID;
     public static String[][] allProducts;
@@ -35,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Подгрузка ресурсов
+        loadResources();
 
         //Stack фрагментов - инициализация
         stack = new Stack<Fragment>();
@@ -144,28 +147,5 @@ public class MainActivity extends AppCompatActivity {
     private void loadResources() {
         availableProductID = DataHandler.loadAvailableProducts(getBaseContext());
         allProducts = DataHandler.loadAllProducts(getBaseContext());
-        /*
-        class LoadRecipes extends AsyncTask<Void, Void, String[][]> {
-            @Override
-            protected String[][] doInBackground(Void... voids) {
-                return DataHandler.loadAllProducts(getBaseContext());
-            }
-        }
-        class LoadProducts extends AsyncTask<Void, Void, String[]> {
-            @Override
-            protected String[] doInBackground(Void... voids) {
-                return DataHandler.loadAvailableProducts(getBaseContext());
-            }
-        }
-        LoadRecipes lr = new LoadRecipes();
-        LoadProducts lp = new LoadProducts();
-        lr.execute();
-        lp.execute();
-        try {
-            //availableProductID = lp.get();
-            allProducts = lr.get();
-        } catch (Exception e) {
-            Toast.makeText(getBaseContext(), "Что-то пошло не по плану :c", Toast.LENGTH_LONG);
-        }*/
     }
 }

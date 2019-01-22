@@ -16,7 +16,7 @@ public class ProductDialog extends AppCompatActivity {
         setContentView(R.layout.activity_product_dialog);
 
         //Автозаполнение
-        final String[][] mData = DataHandler.getAllProducts(this);
+        final String[][] mData = MainActivity.allProducts;
         mAutoCompleteTextView = findViewById(R.id.product);
         mAutoCompleteTextView.setAdapter(new ArrayAdapter<>(this,
                 android.R.layout.simple_dropdown_item_1line, mData[1]));
