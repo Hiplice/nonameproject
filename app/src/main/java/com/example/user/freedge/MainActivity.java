@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
     Fragment currentFragment;
     RecipesListFragment listFragment;
     SettingsFragment settings;
-    RecipesTextFragment recipesTextFragment;
     TextView toolBarText;
     Stack<Fragment> stack;
 
@@ -45,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
         products = new ProductsFragment();
         recipes = new RecipesFragment();
         settings = new SettingsFragment();
-        recipesTextFragment = new RecipesTextFragment();
 
         // Инициплизируем обработчик нажатия на меню
         bottomNavigationMenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -107,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         else {
             if (f != currentFragment) {
                 transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.contentContainer, rec);
+                transaction.replace(R.id.contentContainer, f);
                 transaction.commit();
                 stack.push(currentFragment);
                 currentFragment = f;
@@ -117,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickRecipeMenu(View view) {
         listFragment = new RecipesListFragment();
-        check(recipesTextFragment);
+        check(listFragment);
 
         switch (view.getId()) {
             case R.id.available_recipes:
