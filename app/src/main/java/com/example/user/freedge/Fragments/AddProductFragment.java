@@ -12,7 +12,12 @@ import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 
 import com.example.user.freedge.DataHandler;
+import com.example.user.freedge.MainActivity;
 import com.example.user.freedge.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class AddProductFragment extends DialogFragment {
     @NonNull
@@ -27,7 +32,7 @@ public class AddProductFragment extends DialogFragment {
 
         // Set an EditText view to get user input
         AutoCompleteTextView autoCompleteTextView = new AutoCompleteTextView(getActivity());
-        final String[][] mData = DataHandler.getAllProducts(getContext());
+        final String[][] mData = MainActivity.allProducts;
         autoCompleteTextView.setAdapter(new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_dropdown_item_1line, mData[1]));
         final EditText input = new EditText(getActivity());
@@ -36,7 +41,15 @@ public class AddProductFragment extends DialogFragment {
         alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 Editable value = input.getText();
-                // Do something with value!
+                int id = -1;
+                int catID = 1;
+                for (int i = 0; i < mData[0].length; ++i) {
+                    if (mData[1][i] == String.valueOf(value)) {
+                        id = Integer.valueOf(mData[0][i]);
+                        catID = Integer.valueOf(mData[2][i]);
+                        break;
+                    }
+                } DataHandler.addProduct(id, String.valueOf(value), "200 г.", catID, getDate(), getContext());
             }
         });
 
@@ -48,5 +61,10 @@ public class AddProductFragment extends DialogFragment {
 
 
         return alert.show();
+    }
+
+    private String getDate() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", new Locale("ru"));
+        return dateFormat.format(new Date());
     }
 }

@@ -1,5 +1,7 @@
 package com.example.user.freedge;
 
+import android.app.Activity;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.app.Fragment;
@@ -8,6 +10,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.user.freedge.Fragments.AddProductFragment;
 import com.example.user.freedge.Fragments.ProductsFragment;
@@ -22,16 +25,22 @@ public class MainActivity extends AppCompatActivity {
     android.app.FragmentTransaction transaction;
     RecipesFragment recipes;
     ProductsFragment products;
-    Fragment currentFragment;
+    public static Fragment currentFragment;
     RecipesListFragment listFragment;
     SettingsFragment settings;
     TextView toolBarText;
-    Stack<Fragment> stack;
+    public static Stack<Fragment> stack;
+    MainActivity myApplication;
+
+    public static String[] availableProductID;
+    public static String[][] allProducts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        loadResources();
 
         //Stack фрагментов - инициализация
         stack = new Stack<Fragment>();
@@ -136,5 +145,33 @@ public class MainActivity extends AppCompatActivity {
     public void onButton(View view){
         AddProductFragment addProductFragment = new AddProductFragment();
         addProductFragment.show(getFragmentManager(),"dialog");
+    }
+
+    private void loadResources() {
+        availableProductID = DataHandler.loadAvailableProducts(getBaseContext());
+        allProducts = DataHandler.loadAllProducts(getBaseContext());
+        /*
+        class LoadRecipes extends AsyncTask<Void, Void, String[][]> {
+            @Override
+            protected String[][] doInBackground(Void... voids) {
+                return DataHandler.loadAllProducts(getBaseContext());
+            }
+        }
+        class LoadProducts extends AsyncTask<Void, Void, String[]> {
+            @Override
+            protected String[] doInBackground(Void... voids) {
+                return DataHandler.loadAvailableProducts(getBaseContext());
+            }
+        }
+        LoadRecipes lr = new LoadRecipes();
+        LoadProducts lp = new LoadProducts();
+        lr.execute();
+        lp.execute();
+        try {
+            //availableProductID = lp.get();
+            allProducts = lr.get();
+        } catch (Exception e) {
+            Toast.makeText(getBaseContext(), "Что-то пошло не по плану :c", Toast.LENGTH_LONG);
+        }*/
     }
 }

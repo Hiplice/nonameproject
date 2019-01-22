@@ -1,7 +1,11 @@
 package com.example.user.freedge.RecyclerViewHandlers;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.user.freedge.DataHandler;
+import com.example.user.freedge.Fragments.RecipesTextFragment;
 import com.example.user.freedge.MainActivity;
 import com.example.user.freedge.R;
 
@@ -16,6 +21,8 @@ public class RecipeListView extends RecyclerView.Adapter<RecipeListView.ViewHold
 
     private String[][] mDataList;
     private Context context;
+    RecipesTextFragment recipesTextFragment;
+    FragmentTransaction transaction;
 
     @NonNull
     @Override
@@ -23,12 +30,24 @@ public class RecipeListView extends RecyclerView.Adapter<RecipeListView.ViewHold
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View recyclerViewRow = inflater.inflate(R.layout.recyclerview_recipe_row, parent, false);
+        recipesTextFragment = new RecipesTextFragment();
         return new ViewHolder(recyclerViewRow);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final RecipeListView.ViewHolder viewHolder, final int position) {
         viewHolder.bind(position);
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager manager = ((AppCompatActivity)context).getFragmentManager();
+                transaction = manager.beginTransaction();
+                transaction.replace(R.id.contentContainer, recipesTextFragment);
+                transaction.commit();
+                MainActivity.stack.push(recipesTextFragment);
+            }
+        });
     }
 
     public RecipeListView(Context context, String[][] dataList) {
@@ -39,6 +58,7 @@ public class RecipeListView extends RecyclerView.Adapter<RecipeListView.ViewHold
     class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView boldRecipeName;
+
 
         private ViewHolder(View itemView) {
             super(itemView);

@@ -20,7 +20,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE localproductlist (" +
                 "  productID int NOT NULL," +
                 "  productName text NOT NULL," +
-                "  productWeight text NOT NULL," +
+                "  productWeight int NOT NULL," +
+                "  amount text NOT NULL," +
                 "  categoryID int NOT NULL," +
                 "  addDate text NOT NULL" +
                 ")");
