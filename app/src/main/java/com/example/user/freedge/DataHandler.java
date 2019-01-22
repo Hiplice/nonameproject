@@ -16,8 +16,7 @@ import java.util.ArrayList;
 
 public class DataHandler {
 
-    String availableProducts;
-    boolean onAvailableProductsLoaded = false;
+    public static String recipesText;
 
     /**
      * Метод делает запрос в локальную ДБ и возвращает двумерный массив  [productID, productName, productWeight, categoryID, addDate]
@@ -166,7 +165,7 @@ public class DataHandler {
     public static String[] getRecipeById(int id, Context context) {
 
         NetworkRequests request = new NetworkRequests(context);
-        request.execute("http://95.163.181.200/fridge/?query=get_recipe&i=" + String.valueOf(id));
+        request.execute("http://95.163.181.200/fridge/?query=get_recipe&id=" + String.valueOf(id));
 
         JSONObject jsonObject;
         String[] returnRecipes = {};
@@ -181,8 +180,7 @@ public class DataHandler {
         return returnRecipes;
     }
 
-    public static String[][] getAllProducts(Context context) {
-
+    public static String[][] loadAllProducts(Context context) {
         NetworkRequests request = new NetworkRequests(context);
         request.execute("http://95.163.181.200/fridge/?query=get_all_food");
 
@@ -191,17 +189,78 @@ public class DataHandler {
         try {
             String response = request.get();
             jsonArray = new JSONArray(response);
-            returnRecipes = new String[2][jsonArray.length()];
+            returnRecipes = new String[4][jsonArray.length()];
             for (int i = 0; i < jsonArray.length(); ++i) {
-                returnRecipes[0][i] =  jsonArray.getJSONObject(i).getString("id");
-                returnRecipes[1][i] =  jsonArray.getJSONObject(i).getString("name");
+                returnRecipes[0][i] = jsonArray.getJSONObject(i).getString("id");
+                returnRecipes[1][i] = jsonArray.getJSONObject(i).getString("name");
+                returnRecipes[2][i] = jsonArray.getJSONObject(i).getString("categories");
+                returnRecipes[3][i] = jsonArray.getJSONObject(i).getString("amount");
             }
         } catch (Exception e) {
             Toast.makeText(context, "Что-то пошло не так :c", Toast.LENGTH_LONG);
         }
-
         return returnRecipes;
     }
+
+    public static String[] loadAvailableProducts(Context context) {
+        String[][] availableProducts = getAvailableProducts(context);
+        String requestURI = "";
+
+        for (int i = 0; i < availableProducts.length; ++i) {
+            requestURI += availableProducts[i][0] + "|10000";
+            if (i < availableProducts.length - 1) {
+                requestURI += "@";
+            }
+        }
+
+        NetworkRequests request = new NetworkRequests(context);
+        request.execute("http://95.163.181.200/fridge/?query=calc&arr=" + requestURI + "&start=14000&end=60000&max=0&str=");
+
+        JSONArray jsonArray;
+        String[] returnRecipes = {};
+        try {
+            String response = request.get();
+            jsonArray = new JSONArray(response);
+            returnRecipes = new String[jsonArray.length()];
+            for (int i = 0; i < jsonArray.length(); ++i) {
+                returnRecipes[i] = jsonArray.getString(i);
+            }
+        } catch (Exception e) {
+            Toast.makeText(context, "Что-то пошло не так :c", Toast.LENGTH_LONG);
+        }
+        return returnRecipes;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /*public static String[][] loadAvailableRecipes(Context context) {
         String[][] availableProducts = getAvailableProducts(context);
         String[][] availableProductData = new String[2][availableProducts.length];

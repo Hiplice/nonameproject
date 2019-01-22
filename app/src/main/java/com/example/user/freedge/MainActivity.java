@@ -1,5 +1,6 @@
 package com.example.user.freedge;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -26,12 +27,22 @@ public class MainActivity extends AppCompatActivity {
     RecipesListFragment listFragment;
     SettingsFragment settings;
     TextView toolBarText;
-    Stack<Fragment> stack;
+    public static Stack<Fragment> stack;
+
+    public static String[] availableProductID;
+    public static String[][] allProducts;
+
+    private static AppCompatActivity main_activity_object;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        main_activity_object = this;
         setContentView(R.layout.activity_main);
+
+        // Подгрузка ресурсов
+        loadResources();
 
         //Stack фрагментов - инициализация
         stack = new Stack<Fragment>();
@@ -133,8 +144,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public static AppCompatActivity getMainActivityObject() {
+        return main_activity_object;
+    }
+
+
     public void onButton(View view){
         Intent intent = new Intent(MainActivity.this,  ProductDialog.class);
         startActivity(intent);
+    }
+
+    private void loadResources() {
+        availableProductID = DataHandler.loadAvailableProducts(getBaseContext());
+        allProducts = DataHandler.loadAllProducts(getBaseContext());
     }
 }
