@@ -50,7 +50,8 @@ public class RecipesListFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                mAdapter = new RecipeListView(context, DataHandler.searchFirstNRecipes(30,String.valueOf(recipeSearch.getText()), context));
+                mAdapter = new RecipeListView(context, DataHandler.searchFirstNRecipes
+                        (30,String.valueOf(recipeSearch.getText()), context));
                 mRecyclerView.setAdapter(mAdapter);
             }
         });
