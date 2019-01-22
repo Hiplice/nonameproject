@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class DataHandler {
 
-    public static String recipesText;
+    public static String[] recipesText;
 
     /**
      * Метод делает запрос в локальную ДБ и возвращает двумерный массив  [productID, productName, productWeight, categoryID, addDate]
