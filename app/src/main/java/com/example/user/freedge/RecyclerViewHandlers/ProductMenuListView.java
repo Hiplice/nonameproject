@@ -1,9 +1,12 @@
 package com.example.user.freedge.RecyclerViewHandlers;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +16,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.user.freedge.DataHandler;
+import com.example.user.freedge.Fragments.NoDataFragment;
+import com.example.user.freedge.MainActivity;
 import com.example.user.freedge.R;
 
 public class ProductMenuListView extends RecyclerView.Adapter<ProductMenuListView.ViewHolder> {
@@ -20,6 +25,7 @@ public class ProductMenuListView extends RecyclerView.Adapter<ProductMenuListVie
     private String[][] mDataList;
     private Context context;
 
+    private FragmentTransaction transaction;
     private LinearLayout menuElementRectangle;
     private ImageView categoryIcon;
     private TextView boldProductName;
@@ -46,6 +52,7 @@ public class ProductMenuListView extends RecyclerView.Adapter<ProductMenuListVie
 
     public ProductMenuListView(Context context, String[][] dataList) {
         mDataList = dataList; // [productID, productName, productWeight, amount, categoryID, addDate]
+
         this.context = context;
     }
 
