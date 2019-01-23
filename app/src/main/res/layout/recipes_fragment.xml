@@ -17,7 +17,7 @@
         android:layout_marginBottom="4dp"
         android:layout_weight="1"
         android:background="@drawable/menu_rectangle_element"
-        android:backgroundTint="@color/categoryFruit"
+        android:backgroundTint="@color/categoryBlue"
         android:onClick="onClickRecipeMenu">
 
         <TextView
@@ -43,7 +43,7 @@
         android:layout_marginBottom="4dp"
         android:layout_weight="1"
         android:background="@drawable/menu_rectangle_element"
-        android:backgroundTint="@color/categoryGrass"
+        android:backgroundTint="@color/categoryDeepPurple"
         android:onClick="onClickRecipeMenu">
 
         <TextView
@@ -68,7 +68,7 @@
         android:layout_marginBottom="4dp"
         android:layout_weight="1"
         android:background="@drawable/menu_rectangle_element"
-        android:backgroundTint="@color/categorySweet"
+        android:backgroundTint="@color/categoryOrange"
         android:onClick="onClickRecipeMenu">
 
         <TextView
@@ -93,7 +93,7 @@
         android:layout_marginBottom="8dp"
         android:layout_weight="1"
         android:background="@drawable/menu_rectangle_element"
-        android:backgroundTint="@color/categoryVegetable"
+        android:backgroundTint="@color/categoryGreen"
         android:onClick="onClickRecipeMenu">
 
         <TextView

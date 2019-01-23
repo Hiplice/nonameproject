@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
-    public static String[] columnNames = {"productID", "productName", "productWeight", "categoryID", "addDate"};
+    public static String[] columnNames = {"productID", "productName", "productWeight", "amount", "categoryID", "addDate"};
     private static final String DATABASE_NAME = "fridge.db";
     public static final String TABLE_NAME = "localproductlist";
     private static final int DATABASE_VERSION = 1;

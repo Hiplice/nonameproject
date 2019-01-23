@@ -22,9 +22,9 @@ public class DataHandler {
      * Метод делает запрос в локальную ДБ и возвращает двумерный массив  [productID, productName, productWeight, amount, categoryID, addDate]
      **/
     public static String[][] getAvailableProducts(final Context context) {
-        class DatabaseThread extends AsyncTask<Void, Void, String[][]> {
+        /*class DatabaseThread extends AsyncTask<Void, Void, String[][]> {
             @Override
-            protected String[][] doInBackground(Void... voids) {
+            protected String[][] doInBackground(Void... voids) {*/
                 DataBaseHelper dbHelper = new DataBaseHelper(context);
                 SQLiteDatabase db;
                 try {
@@ -57,7 +57,7 @@ public class DataHandler {
                 }
                 cursor.close();
                 db.close();
-                return returnRequest;
+                return returnRequest;/*
             }
         }
         DatabaseThread databaseThread = new DatabaseThread();
@@ -70,7 +70,7 @@ public class DataHandler {
             Toast.makeText(context, "Something went wrong", Toast.LENGTH_LONG).show();
         }
 
-        return returnElement;
+        return returnElement;*/
     }
 
     public static void addProduct(final int id, final String name, final int weight, final String amount, final int catID, final String date, final Context context){
@@ -129,16 +129,6 @@ public class DataHandler {
     /**
      * Геттеры цветов и иконок для RecyclerView
      */
-
-    public static int getCategoryColorsById(String id) {
-        int[] categories = {R.color.categoryMeat, R.color.categoryFruit, R.color.categoryGrass, R.color.categoryVegetable, R.color.categorySpice, R.color.categorySweet};
-        return categories[Integer.valueOf(id)];
-    }
-
-    public static int getCategoryIconsById(String id) {
-        int[] iconURLs = {R.drawable.category_meat, R.drawable.category_fruit, R.drawable.category_grass, R.drawable.category_vegetable, R.drawable.category_spice, R.drawable.category_sweet};
-        return iconURLs[Integer.valueOf(id)];
-    }
 
     public static String[][] searchFirstNRecipes(int n, String str, Context context) {
 
@@ -231,6 +221,38 @@ public class DataHandler {
             Toast.makeText(context, "Что-то пошло не так :c", Toast.LENGTH_LONG);
         }
         return returnRecipes;
+    }
+
+    public static int getCategoryColorsById(String id) {
+        int[] categories = {
+                -1, R.color.categoryTeal, R.color.categoryAmber, R.color.categoryBlueGrey,
+                R.color.categoryGrey,  R.color.categoryYellow, R.color.categoryDeepPurple,
+                R.color.categoryGreen,  R.color.categoryOrange, R.color.categoryAmber,
+                R.color.categoryLime,  R.color.categoryBrown, R.color.categoryCyan,
+                R.color.categoryLightGreen,  R.color.categoryPurple, R.color.categoryDeepPurple,
+                R.color.categoryRed,  R.color.categoryBlue, R.color.categoryDeepOrange,
+                R.color.categoryRed,  R.color.categoryGrey, R.color.categoryYellow,
+                R.color.categoryYellow,  R.color.categoryBrown, R.color.categoryLightBlue,
+                R.color.categoryBlueGrey,  R.color.categoryAmber, R.color.categoryPurple,
+                R.color.categoryYellow,  R.color.categoryOrange
+
+        };
+        return categories[Integer.valueOf(id)];
+    }
+
+    public static int getCategoryIconsById(String id) {
+        int[] iconURLs = {-1, R.drawable.category_1, R.drawable.category_2, R.drawable.category_3,
+                R.drawable.category_4, R.drawable.category_5, R.drawable.category_6,
+                R.drawable.category_7, R.drawable.category_8, -1,
+                R.drawable.category_10, R.drawable.category_11, R.drawable.category_12,
+                R.drawable.category_13, R.drawable.category_14, R.drawable.category_15,
+                R.drawable.category_16, R.drawable.category_17, R.drawable.category_18,
+                R.drawable.category_19, R.drawable.category_20, R.drawable.category_21,
+                R.drawable.category_22, R.drawable.category_23, R.drawable.category_24,
+                R.drawable.category_25, R.drawable.category_26, R.drawable.category_27,
+                R.drawable.category_28, R.drawable.category_29
+        };
+        return iconURLs[Integer.valueOf(id)];
     }
 
 

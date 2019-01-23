@@ -15,6 +15,7 @@ import com.example.user.freedge.R;
 
 public class ProductsFragment extends Fragment {
 
+    private static Fragment productsFragment;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -23,6 +24,8 @@ public class ProductsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View productsView = inflater.inflate(R.layout.products_fragment, container, false);
+
+        productsFragment = this;
 
         // Инициализирую ресайклер
         initRecyclerView(productsView);
@@ -38,6 +41,10 @@ public class ProductsFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new ProductMenuListView(context, DataHandler.getAvailableProducts(context));
         mRecyclerView.setAdapter(mAdapter);
+    }
+
+    public static Fragment getProductsFragment() {
+        return productsFragment;
     }
 }
 

@@ -30,7 +30,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="2.5"
                 android:padding="2dp"
-                app:srcCompat="@drawable/category_meat" />
+                app:srcCompat="@drawable/category_1" />
 
             <LinearLayout
                 android:layout_width="match_parent"

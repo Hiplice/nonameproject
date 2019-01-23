@@ -1,35 +1,44 @@
 package com.example.user.freedge;
 
+import android.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.user.freedge.Fragments.ProductsFragment;
+import com.example.user.freedge.RecyclerViewHandlers.ProductMenuListView;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class ProductDialog extends AppCompatActivity {
 
     AutoCompleteTextView mAutoCompleteTextView;
     TextView countType;
-    String name;
-    Toolbar toolbar;
+    EditText productWeight;
+    final String[] chosenElementInformation = new String[4];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_dialog);
         countType = findViewById(R.id.count_type);
+        productWeight = findViewById(R.id.count);
 
         //Автозаполнение
         final String[][] mData = MainActivity.allProducts;
         mAutoCompleteTextView = findViewById(R.id.product);
         mAutoCompleteTextView.setAdapter(new ArrayAdapter<>(this,
                 android.R.layout.simple_dropdown_item_1line, mData[1]));
-        final String[] chosenElementInformation = new String[4];
 
         mAutoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -50,13 +59,24 @@ public class ProductDialog extends AppCompatActivity {
     }
 
     public void onOk(View view){
-        name = mAutoCompleteTextView.getText().toString();
-        Toast toast = Toast.makeText(getApplicationContext(),
-                name, Toast.LENGTH_SHORT);
-        toast.show();
+        DataHandler.addProduct(Integer.valueOf(chosenElementInformation[0]),
+                chosenElementInformation[1], Integer.valueOf(productWeight.getText().toString()),
+                chosenElementInformation[3], Integer.valueOf(chosenElementInformation[2]),
+                getDate(), getBaseContext());
+
+        /*Fragment productsFragment = ProductsFragment.getProductsFragment();
+        RecyclerView recyclerView = productsFragment.getActivity().findViewById(R.id.productRecyclerView);
+        ProductMenuListView mAdapter = new ProductMenuListView(getBaseContext(), DataHandler.getAvailableProducts(getBaseContext()));
+        recyclerView.setAdapter(mAdapter);*/
+
+        finish();
     }
 
     public void onCancel(View view) {
         finish();
+    }
+
+    public String getDate() {
+        return new SimpleDateFormat("dd.MM.yyyy").format(Calendar.getInstance().getTime());
     }
 }

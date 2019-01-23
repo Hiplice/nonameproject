@@ -69,7 +69,7 @@ public class RecipesListFragment extends Fragment {
         if (toolBarText.getText() == "Все рецепты") {
             mAdapter = new RecipeListView(context, DataHandler.searchFirstNRecipes(30, "", context));
         } else if (toolBarText.getText() == "Доступные рецепты") {
-
+            mAdapter = new RecipeListView(context, MainActivity.availableProducts);
         } else if (toolBarText.getText() == "Избранное") {
 
         } else if (toolBarText.getText() == "Подборки") {
