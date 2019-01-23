@@ -19,7 +19,7 @@ public class DataHandler {
     public static String[] recipesText;
 
     /**
-     * Метод делает запрос в локальную ДБ и возвращает двумерный массив  [productID, productName, productWeight, categoryID, addDate]
+     * Метод делает запрос в локальную ДБ и возвращает двумерный массив  [productID, productName, productWeight, amount, categoryID, addDate]
      **/
     public static String[][] getAvailableProducts(final Context context) {
         class DatabaseThread extends AsyncTask<Void, Void, String[][]> {
@@ -40,7 +40,7 @@ public class DataHandler {
                 int counter = 0;
                 while (cursor.moveToNext()) {
                     requestList.add(new ArrayList<String>());
-                    for (int i = 0; i < 5; ++i) {
+                    for (int i = 0; i < 6; ++i) {
                         requestList.get(counter).add(cursor.getString(cursor.getColumnIndex(DataBaseHelper.columnNames[i])));
                     } counter++;
                 }
@@ -63,7 +63,7 @@ public class DataHandler {
         DatabaseThread databaseThread = new DatabaseThread();
         databaseThread.execute();
 
-        String[][] returnElement = {{}, {}, {}, {}, {}};
+        String[][] returnElement = {{}, {}, {}, {}, {}, {}};
         try {
             returnElement = databaseThread.get();
         } catch (Exception e) {
@@ -73,7 +73,7 @@ public class DataHandler {
         return returnElement;
     }
 
-    public static void addProduct(final int id, final String name, final String weight, final int catID, final String date, final Context context){
+    public static void addProduct(final int id, final String name, final int weight, final String amount, final int catID, final String date, final Context context){
         // TODO: Метод принимает на вход id продукта и вес, после чего добавляет этот продукт в DB
         class DatabaseThread extends AsyncTask<Void, Void, String> {
             @Override
@@ -91,6 +91,7 @@ public class DataHandler {
                 insertData.put("productID", id);
                 insertData.put("productName", name);
                 insertData.put("productWeight", weight);
+                insertData.put("amount", amount);
                 insertData.put("categoryID", catID);
                 insertData.put("addDate", date);
                 db.insert(DataBaseHelper.TABLE_NAME, null, insertData);
