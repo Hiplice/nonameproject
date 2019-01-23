@@ -2,7 +2,6 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-
         <item name="android:navigationBarColor">#212121</item>
 
         <!-- Main colors. -->
@@ -24,7 +23,7 @@
     <style name="Theme.MyDialog" parent="@style/Theme.AppCompat.Light.Dialog">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:background">@drawable/dialog_window</item>
+        <item name="android:background">@color/white</item>
     </style>
 
 </resources>

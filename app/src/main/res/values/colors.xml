@@ -5,6 +5,7 @@
     <color name="colorPrimary">#EEEEEE</color>
     <color name="colorPrimaryDark">#212121</color>
     <color name="colorAccent">#ECF0F1</color>
+    <color name="white">#EEEAEA</color>
 
     <!-- Project interface colors -->
     <color name="projectLight">#bdc3c7</color>
