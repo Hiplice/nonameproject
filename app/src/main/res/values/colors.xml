@@ -8,7 +8,7 @@
     <color name="white">#EEEAEA</color>
 
     <!-- Project interface colors -->
-    <color name="projectLight">#bdc3c7</color>
+    <color name="projectLight">#BDC3C7</color>
     <color name="projectDark">#212121</color>
     <color name="projectWhite">#ECF0F1</color>
     <color name="Grey">#424242</color>
