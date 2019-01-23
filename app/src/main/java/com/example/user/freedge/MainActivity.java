@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     public static Stack<Fragment> stack;
     Button back;
 
-    public static String[] availableProductID;
+    public static String[][] availableProducts;
     public static String[][] allProducts;
 
     private static AppCompatActivity main_activity_object;
@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadResources() {
-        availableProductID = DataHandler.loadAvailableProducts(getBaseContext());
+        availableProducts = DataHandler.loadAvailableProducts(getBaseContext());
         allProducts = DataHandler.loadAllProducts(getBaseContext());
     }
 }

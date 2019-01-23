@@ -89,7 +89,7 @@
     <string name="input_product">введите продукт</string>
     <string name="product_count">введите колисчество</string>
     <string name="ok">OK</string>
-    <string name="cancel">CANCEL</string>
+    <string name="cancel">НАЗАД</string>
     <string name="gram">грамм</string>
 
 </resources>
