@@ -26,7 +26,7 @@
         <activity
             android:name=".ProductDialog"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Dialog">
+            android:theme="@style/Theme.MyDialog">
         </activity>
     </application>
 

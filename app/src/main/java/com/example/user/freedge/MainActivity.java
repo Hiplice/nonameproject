@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.user.freedge.Fragments.ProductsFragment;
@@ -23,11 +24,12 @@ public class MainActivity extends AppCompatActivity {
     android.app.FragmentTransaction transaction;
     RecipesFragment recipes;
     ProductsFragment products;
-    Fragment currentFragment;
+    public static Fragment currentFragment;
     RecipesListFragment listFragment;
     SettingsFragment settings;
     TextView toolBarText;
     public static Stack<Fragment> stack;
+    Button back;
 
     public static String[] availableProductID;
     public static String[][] allProducts;
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         // Инициализируем элементы интерфейса
         toolBarText = findViewById(R.id.toolBarText);
         BottomNavigationView bottomNavigationMenu = findViewById(R.id.navigationMenu);
+        back = findViewById(R.id.back);
 
         // Инициализируем фрагметы активити
         products = new ProductsFragment();
@@ -64,14 +67,17 @@ public class MainActivity extends AppCompatActivity {
                     check(products);
                     //Меняем надпись на тулбаре
                     toolBarText.setText(R.string.appbar_products);
+                    back.setVisibility(View.INVISIBLE);
                 } else if (menuItem.getItemId() == R.id.action_recipes) {
                     check(recipes);
                     // Меняем надпись на тулбаре
                     toolBarText.setText(R.string.appbar_recipes);
+                    back.setVisibility(View.INVISIBLE);
                 } else if (menuItem.getItemId() == R.id.action_settings) {
                     check(settings);
                     // Меняем надпись на тулбаре
                     toolBarText.setText(R.string.appbar_settings);
+                    back.setVisibility(View.INVISIBLE);
                 }
                 return false;
             }
@@ -82,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Устанавливаем активити в фрагменте
         check(products);
+        back.setVisibility(View.INVISIBLE);
     }
 
 
@@ -93,10 +100,49 @@ public class MainActivity extends AppCompatActivity {
             transaction = getFragmentManager().beginTransaction();
             transaction.replace(R.id.contentContainer, stack.peek());
             transaction.commit();
-            //TODO: При возврате на ListFragment не меняется текст Toolbar (пока это не тестится)
-            if (stack.peek() == products) toolBarText.setText(R.string.appbar_products);
-            if (stack.peek() == recipes) toolBarText.setText(R.string.appbar_recipes);
-            if (stack.peek() == settings) toolBarText.setText(R.string.appbar_settings);
+            if (stack.peek() == products) {
+                toolBarText.setText(R.string.appbar_products);
+                back.setVisibility(View.INVISIBLE);
+            }
+            if (stack.peek() == recipes) {
+                toolBarText.setText(R.string.appbar_recipes);
+                back.setVisibility(View.INVISIBLE);
+            }
+            if (stack.peek() == settings) {
+                toolBarText.setText(R.string.appbar_settings);
+                back.setVisibility(View.INVISIBLE);
+            }
+            if (stack.peek() == listFragment) {
+                toolBarText.setText(R.string.list);
+                back.setVisibility(View.VISIBLE);
+            }
+            currentFragment = stack.peek();
+            stack.pop();
+        }
+
+    }
+
+    public void onBack(View view) {
+        if (!stack.empty()) {
+            transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.contentContainer, stack.peek());
+            transaction.commit();
+            if (stack.peek() == products) {
+                toolBarText.setText(R.string.appbar_products);
+                back.setVisibility(View.INVISIBLE);
+            }
+            if (stack.peek() == recipes) {
+                toolBarText.setText(R.string.appbar_recipes);
+                back.setVisibility(View.INVISIBLE);
+            }
+            if (stack.peek() == settings) {
+                toolBarText.setText(R.string.appbar_settings);
+                back.setVisibility(View.INVISIBLE);
+            }
+            if (stack.peek() == listFragment) {
+                toolBarText.setText(R.string.list);
+                back.setVisibility(View.VISIBLE);
+            }
             currentFragment = stack.peek();
             stack.pop();
         }
@@ -127,6 +173,7 @@ public class MainActivity extends AppCompatActivity {
     public void onClickRecipeMenu(View view) {
         listFragment = new RecipesListFragment();
         check(listFragment);
+        back.setVisibility(View.VISIBLE);
 
         switch (view.getId()) {
             case R.id.available_recipes:
