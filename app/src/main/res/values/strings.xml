@@ -87,6 +87,9 @@
     <string name="favourites">Избранное</string>
     <string name="selections">Подборки</string>
     <string name="input_product">введите продукт</string>
-    <string name="product_count">веедите колисчество</string>
+    <string name="product_count">введите колисчество</string>
+    <string name="ok">OK</string>
+    <string name="cancel">CANCEL</string>
+    <string name="gram">грамм</string>
 
 </resources>
