@@ -54,7 +54,8 @@ public class RecipeListView extends RecyclerView.Adapter<RecipeListView.ViewHold
                 transaction = manager.beginTransaction();
                 transaction.replace(R.id.contentContainer, recipesTextFragment);
                 transaction.commit();
-                MainActivity.stack.push(recipesTextFragment);
+                MainActivity.stack.push(MainActivity.currentFragment);
+                MainActivity.currentFragment = recipesTextFragment;
             }
         });
     }
