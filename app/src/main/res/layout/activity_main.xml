@@ -27,11 +27,18 @@
                 android:background="@color/Grey"
                 android:requiresFadingEdge="none">
 
+                <Button
+                    android:layout_width="30dp"
+                    android:id="@+id/back"
+                    android:layout_height="30dp"
+                    android:background="@drawable/back"
+                    android:onClick="onBack" />
+
                 <TextView
                     android:id="@+id/toolBarText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginEnd="50dp"
                     android:textAlignment="center"
                     android:textColor="@color/colorPrimary"
                     android:textSize="18sp" />

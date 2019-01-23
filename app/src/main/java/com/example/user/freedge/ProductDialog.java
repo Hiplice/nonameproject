@@ -1,12 +1,11 @@
 package com.example.user.freedge;
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.EditText;
 import android.widget.Toast;
 
 public class ProductDialog extends AppCompatActivity {
@@ -31,7 +30,6 @@ public class ProductDialog extends AppCompatActivity {
         Toast toast = Toast.makeText(getApplicationContext(),
                 name, Toast.LENGTH_SHORT);
         toast.show();
-        //DataHandler.addProduct(name);
     }
 
     public void onCancel(View view) {
