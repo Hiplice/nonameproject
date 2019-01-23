@@ -14,12 +14,25 @@
     <color name="Grey">#424242</color>
 
     <!-- Category colors -->
-    <color name="categoryMeat">#E57373</color>
-    <color name="categoryFruit">#FF8A65</color>
-    <color name="categoryGrass">#81C784</color>
-    <color name="categoryVegetable">#4DB6AC</color>
-    <color name="categorySpice">#A1887F</color>
-    <color name="categorySweet">#F06292</color>
+    <color name="categoryRed">#E57373</color>
+    <color name="categoryPink">#F06292</color>
+    <color name="categoryPurple">#BA68C8</color>
+    <color name="categoryDeepPurple">#9575CD</color>
+    <color name="categoryBlue">#64B5F6</color>
+    <color name="categoryLightBlue">#4FC3F7</color>
+    <color name="categoryCyan">#4DD0E1</color>
+    <color name="categoryTeal">#4DB6AC</color>
+    <color name="categoryLightGreen">#AED581</color>
+    <color name="categoryLime">#DCE775</color>
+    <color name="categoryYellow">#FFF176</color>
+    <color name="categoryAmber">#FFD54F</color>
+    <color name="categoryDeepOrange">#FF8A65</color>
+    <color name="categoryBrown">#A1887F</color>
+    <color name="categoryGrey">#E0E0E0</color>
+    <color name="categoryBlueGrey">#90A4AE</color>
+    <color name="categoryIndigo">#7986CB</color>
+    <color name="categoryGreen">#81C784</color>
+    <color name="categoryOrange">#FFB74D</color>
 
     <color name="buttons">#33FFFFFF</color>
 

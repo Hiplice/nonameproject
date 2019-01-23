@@ -38,14 +38,14 @@ public class ProductMenuListView extends RecyclerView.Adapter<ProductMenuListVie
     @Override
     public void onBindViewHolder(@NonNull ProductMenuListView.ViewHolder viewHolder, int position) {
         boldProductName.setText(mDataList[position][1]);
-        productAddDate.setText(mDataList[position][4]);
-        productWeight.setText(mDataList[position][2]);
-        categoryIcon.setImageResource(DataHandler.getCategoryIconsById(mDataList[position][3]));
-        menuElementRectangle.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, DataHandler.getCategoryColorsById(mDataList[position][3]))));
+        productAddDate.setText(mDataList[position][5]);
+        productWeight.setText(mDataList[position][2] + " " + mDataList[position][3]);
+        categoryIcon.setImageResource(DataHandler.getCategoryIconsById(mDataList[position][4]));
+        menuElementRectangle.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, DataHandler.getCategoryColorsById(mDataList[position][4]))));
     }
 
     public ProductMenuListView(Context context, String[][] dataList) {
-        mDataList = dataList; // [_ID, productID, productName, productWeight, categoryID, addDate]
+        mDataList = dataList; // [productID, productName, productWeight, amount, categoryID, addDate]
         this.context = context;
     }
 

@@ -86,10 +86,10 @@
     <string name="list">Все рецепты</string>
     <string name="favourites">Избранное</string>
     <string name="selections">Подборки</string>
-    <string name="input_product">введите продукт</string>
-    <string name="product_count">введите колисчество</string>
+    <string name="input_product">Название продукта</string>
+    <string name="product_count">Количество</string>
     <string name="ok">OK</string>
     <string name="cancel">НАЗАД</string>
-    <string name="gram">грамм</string>
+    <string name="add_prod">Добавить продукт</string>
 
 </resources>

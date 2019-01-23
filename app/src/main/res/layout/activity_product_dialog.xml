@@ -2,23 +2,37 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="270dp"
+    android:layout_width="250dp"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="10dp"
     tools:context=".ProductDialog">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="4dp"
+        android:layout_weight="1"
+        android:text="@string/add_prod"
+        android:textColor="@color/Grey"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
     <AutoCompleteTextView
         android:id="@+id/product"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
         android:layout_weight="1"
         android:hint="@string/input_product" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
         android:layout_weight="1"
         android:orientation="horizontal">
 
@@ -45,6 +59,7 @@
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:layout_weight="1"
         android:orientation="horizontal">
 
@@ -55,17 +70,17 @@
             android:layout_marginTop="4dp"
             android:onClick="onCancel"
             android:text="@string/cancel"
-            android:textSize="22sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="4dp"
+            android:layout_marginEnd="8dp"
             android:onClick="onOk"
             android:text="@string/ok"
-            android:textSize="22sp" />
+            android:textSize="18sp" />
 
     </android.support.design.widget.CoordinatorLayout>
 
