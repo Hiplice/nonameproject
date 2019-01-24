@@ -34,7 +34,7 @@ public class RecipesTextFragment extends Fragment {
         for (int i = 0; i < textDataArr.length; ++i) {
             textData += textDataArr[i];
             if (i < textDataArr.length - 1) {
-                textData += "\n";
+                textData += "\n\n";
             }
         }
         recipeText.setText(textData);
