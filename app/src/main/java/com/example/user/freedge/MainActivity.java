@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     TextView toolBarText;
     public static Stack<Fragment> stack;
     Button back;
+    public static String window;
 
     public static String[][] availableProducts;
     public static String[][] allProducts;
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         products = new ProductsFragment();
         recipes = new RecipesFragment();
         settings = new SettingsFragment();
+        window = "";
 
         // Инициплизируем обработчик нажатия на меню
         bottomNavigationMenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -114,7 +116,11 @@ public class MainActivity extends AppCompatActivity {
                 back.setVisibility(View.INVISIBLE);
             }
             if (stack.peek() == listFragment) {
-                toolBarText.setText(R.string.list);
+                if (window == "All recipes") {
+                    toolBarText.setText(R.string.list);
+                }
+                if (window == "Available recipes")
+                    toolBarText.setText(R.string.available);
                 back.setVisibility(View.VISIBLE);
             }
             currentFragment = stack.peek();
@@ -140,8 +146,13 @@ public class MainActivity extends AppCompatActivity {
                 toolBarText.setText(R.string.appbar_settings);
                 back.setVisibility(View.INVISIBLE);
             }
+            //TODO здесь должен быть if
             if (stack.peek() == listFragment) {
-                toolBarText.setText(R.string.list);
+                if (window == "All recipes") {
+                    toolBarText.setText(R.string.list);
+                }
+                if (window == "Available recipes")
+                    toolBarText.setText(R.string.available);
                 back.setVisibility(View.VISIBLE);
             }
             currentFragment = stack.peek();
@@ -179,15 +190,19 @@ public class MainActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.available_recipes:
                 toolBarText.setText("Доступные рецепты");
+                window = "Available recipes";
                 break;
             case R.id.all_recipes:
                 toolBarText.setText("Все рецепты");
+                window = "All recipes";
                 break;
             case R.id.favourites:
                 toolBarText.setText("Избранное");
+                window = "Favourites";
                 break;
             case R.id.selections:
                 toolBarText.setText("Подборки");
+                window = "Recommendation";
                 break;
         }
     }

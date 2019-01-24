@@ -16,7 +16,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.user.freedge.DataHandler;
-import com.example.user.freedge.Fragments.NoDataFragment;
 import com.example.user.freedge.MainActivity;
 import com.example.user.freedge.R;
 
