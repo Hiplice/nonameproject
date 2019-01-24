@@ -63,12 +63,6 @@ public class ProductDialog extends AppCompatActivity {
                 chosenElementInformation[1], Integer.valueOf(productWeight.getText().toString()),
                 chosenElementInformation[3], Integer.valueOf(chosenElementInformation[2]),
                 getDate(), getBaseContext());
-
-        /*Fragment productsFragment = ProductsFragment.getProductsFragment();
-        RecyclerView recyclerView = productsFragment.getActivity().findViewById(R.id.productRecyclerView);
-        ProductMenuListView mAdapter = new ProductMenuListView(getBaseContext(), DataHandler.getAvailableProducts(getBaseContext()));
-        recyclerView.setAdapter(mAdapter);*/
-
         finish();
     }
 

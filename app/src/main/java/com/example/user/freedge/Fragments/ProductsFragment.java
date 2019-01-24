@@ -15,9 +15,9 @@ import com.example.user.freedge.R;
 
 public class ProductsFragment extends Fragment {
 
-    private static Fragment productsFragment;
+    private static ProductsFragment productsFragment;
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    ProductMenuListView mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private Context context;
 
@@ -26,16 +26,20 @@ public class ProductsFragment extends Fragment {
         View productsView = inflater.inflate(R.layout.products_fragment, container, false);
 
         productsFragment = this;
-
-        // Инициализирую ресайклер
-        initRecyclerView(productsView);
-
         return productsView;
     }
 
-    private void initRecyclerView(View view) {
-        mRecyclerView = view.findViewById(R.id.productRecyclerView);
-        context = view.getContext();
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // Инициализирую ресайклер
+        initRecyclerView();
+    }
+
+    public void initRecyclerView() {
+        mRecyclerView = getActivity().findViewById(R.id.productRecyclerView);
+        context = getContext();
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(context);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -43,7 +47,12 @@ public class ProductsFragment extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    public static Fragment getProductsFragment() {
+    public void updateRecyclerView() {
+        mAdapter.refreshDataset(DataHandler.getAvailableProducts(context));
+        mAdapter.notifyDataSetChanged();
+    }
+
+    public static ProductsFragment getProductsFragment() {
         return productsFragment;
     }
 }

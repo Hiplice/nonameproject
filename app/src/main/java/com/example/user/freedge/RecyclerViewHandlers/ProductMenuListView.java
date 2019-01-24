@@ -17,12 +17,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.user.freedge.DataHandler;
+import com.example.user.freedge.Fragments.ProductsFragment;
 import com.example.user.freedge.MainActivity;
 import com.example.user.freedge.R;
 
 public class ProductMenuListView extends RecyclerView.Adapter<ProductMenuListView.ViewHolder> {
 
-    private String[][] mDataList;
+    public String[][] mDataList;
     private Context context;
 
     private FragmentTransaction transaction;
@@ -36,14 +37,30 @@ public class ProductMenuListView extends RecyclerView.Adapter<ProductMenuListVie
         return new ViewHolder(recyclerViewRow);
     }
 
+    public void refreshDataset(String[][] data) {
+        mDataList = data;
+        notifyDataSetChanged();
+    }
+
     @Override
-    public void onBindViewHolder(@NonNull final ProductMenuListView.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull final ProductMenuListView.ViewHolder viewHolder, final int position) {
         viewHolder.bind(position);
 
         viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Snackbar.make(viewHolder.itemView, "Action", Snackbar.LENGTH_LONG).show();
+                Snackbar deleteItem  = Snackbar.make(viewHolder.itemView, "Удалить продукт?", Snackbar.LENGTH_LONG)
+                        .setAction("Да", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                DataHandler.removeProduct(Integer.valueOf(mDataList[position][0]), context);
+                                ProductsFragment productsFragment = ProductsFragment.getProductsFragment();
+                                productsFragment.onPause();
+                                productsFragment.onResume();
+                                //productsFragment.initRecyclerView();
+                            }
+                        });
+                deleteItem.show();
                 return false;
             }
         });
@@ -51,7 +68,6 @@ public class ProductMenuListView extends RecyclerView.Adapter<ProductMenuListVie
 
     public ProductMenuListView(Context context, String[][] dataList) {
         mDataList = dataList; // [productID, productName, productWeight, amount, categoryID, addDate]
-
         this.context = context;
     }
 

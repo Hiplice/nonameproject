@@ -66,7 +66,7 @@ public class RecipesListFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(context);
         mRecyclerView.setLayoutManager(mLayoutManager);
         if (toolBarText.getText() == "Все рецепты") {
-            mAdapter = new RecipeListView(context, DataHandler.searchFirstNRecipes(30, "", context));
+            mAdapter = new RecipeListView(context, DataHandler.searchFirstNRecipes(100, "", context));
         } else if (toolBarText.getText() == "Доступные рецепты") {
             mAdapter = new RecipeListView(context, MainActivity.availableProducts);
         } else if (toolBarText.getText() == "Избранное") {
