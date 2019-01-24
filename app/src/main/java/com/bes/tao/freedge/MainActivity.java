@@ -1,23 +1,19 @@
 package com.bes.tao.freedge;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.app.Fragment;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bes.tao.freedge.Fragments.ProductsFragment;
 import com.bes.tao.freedge.Fragments.RecipesFragment;
 import com.bes.tao.freedge.Fragments.RecipesListFragment;
-import com.bes.tao.freedge.Fragments.RecipesTextFragment;
 import com.bes.tao.freedge.Fragments.SettingsFragment;
 import java.util.Stack;
 

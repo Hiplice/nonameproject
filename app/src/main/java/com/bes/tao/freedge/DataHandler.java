@@ -75,9 +75,9 @@ public class DataHandler {
 
     public static void addProduct(final int id, final String name, final int weight, final String amount, final int catID, final String date, final Context context){
         // TODO: Метод принимает на вход id продукта и вес, после чего добавляет этот продукт в DB
-        class DatabaseThread extends AsyncTask<Void, Void, String> {
+        /*class DatabaseThread extends AsyncTask<Void, Void, String> {
             @Override
-            protected String doInBackground(Void... voids) {
+            protected String doInBackground(Void... voids) {*/
                 DataBaseHelper dbHelper = new DataBaseHelper(context);
                 SQLiteDatabase db;
                 try {
@@ -96,18 +96,18 @@ public class DataHandler {
                 insertData.put("addDate", date);
                 db.insert(DataBaseHelper.TABLE_NAME, null, insertData);
                 db.close();
-                return null;
+                /*return null;
             }
         }
         DatabaseThread databaseThread = new DatabaseThread();
-        databaseThread.execute();
+        databaseThread.execute();*/
     }
 
     public static void removeProduct(final int id, final Context context){
         // TODO: Метод принимает на вход id продукта, после чего удаляет его из DB
-        class DatabaseThread extends AsyncTask<Void, Void, String> {
+        /*class DatabaseThread extends AsyncTask<Void, Void, String> {
             @Override
-            protected String doInBackground(Void... voids) {
+            protected String doInBackground(Void... voids) {*/
                 DataBaseHelper dbHelper = new DataBaseHelper(context);
                 SQLiteDatabase db;
                 try {
@@ -119,11 +119,11 @@ public class DataHandler {
 
                 db.delete(DataBaseHelper.TABLE_NAME, "productID = ?", new String[] {String.valueOf(id)});
                 db.close();
-                return null;
+                /*return null;
             }
         }
         DatabaseThread databaseThread = new DatabaseThread();
-        databaseThread.execute();
+        databaseThread.execute();*/
     }
 
     /**
