@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -134,12 +135,11 @@ public class DataHandler {
 
         String[] recipes = new String[] {"Лазанья с сыром", "Томатный суп с креветками"};
         NetworkRequests request = new NetworkRequests(context);
-        request.execute("http://95.163.181.200/fridge/?query=search&count=" + String.valueOf(n) + "&str=" + String.valueOf(str));
 
         JSONArray jsonArray;
         String[][] returnRecipes = {};
         try {
-            String response = request.get();
+            String response = request.doHTTPRequest("http://95.163.181.200/fridge/?query=search&count=" + String.valueOf(n) + "&str=" + String.valueOf(str));
             jsonArray = new JSONArray(response);
             returnRecipes = new String[2][jsonArray.length()];
             for (int i = 0; i < jsonArray.length(); ++i) {
@@ -156,12 +156,11 @@ public class DataHandler {
     public static String[] getRecipeById(int id, Context context) {
 
         NetworkRequests request = new NetworkRequests(context);
-        request.execute("http://95.163.181.200/fridge/?query=get_recipe&id=" + String.valueOf(id));
 
         JSONObject jsonObject;
         String[] returnRecipes = {};
         try {
-            String response = request.get();
+            String response = request.doHTTPRequest("http://95.163.181.200/fridge/?query=get_recipe&id=" + String.valueOf(id));
             jsonObject = new JSONObject(response);
             returnRecipes = jsonObject.getString("recipe").split("@");
         } catch (Exception e) {
@@ -171,56 +170,84 @@ public class DataHandler {
         return returnRecipes;
     }
 
-    public static String[][] loadAllProducts(Context context) {
-        NetworkRequests request = new NetworkRequests(context);
-        request.execute("http://95.163.181.200/fridge/?query=get_all_food");
+    public static String[][] loadAllProducts(final Context context) {
+        class LoadProducts extends AsyncTask<Void, Void, String[][]> {
+            @Override
+            protected String[][] doInBackground(Void... voids) {
+                NetworkRequests request = new NetworkRequests(context);
 
-        JSONArray jsonArray;
-        String[][] returnRecipes = {};
-        try {
-            String response = request.get();
-            jsonArray = new JSONArray(response);
-            returnRecipes = new String[4][jsonArray.length()];
-            for (int i = 0; i < jsonArray.length(); ++i) {
-                returnRecipes[0][i] = jsonArray.getJSONObject(i).getString("id");
-                returnRecipes[1][i] = jsonArray.getJSONObject(i).getString("name");
-                returnRecipes[2][i] = jsonArray.getJSONObject(i).getString("categories");
-                returnRecipes[3][i] = jsonArray.getJSONObject(i).getString("units").equals("0") ? "гр." : "шт.";
+                JSONArray jsonArray;
+                String[][] returnRecipes = {};
+                try {
+                    String response = request.doHTTPRequest("http://95.163.181.200/fridge/?query=get_all_food");
+                    jsonArray = new JSONArray(response);
+                    returnRecipes = new String[4][jsonArray.length()];
+                    for (int i = 0; i < jsonArray.length(); ++i) {
+                        returnRecipes[0][i] = jsonArray.getJSONObject(i).getString("id");
+                        returnRecipes[1][i] = jsonArray.getJSONObject(i).getString("name");
+                        returnRecipes[2][i] = jsonArray.getJSONObject(i).getString("categories");
+                        returnRecipes[3][i] = "гр.";
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(context, "Что-то пошло не так :c", Toast.LENGTH_LONG);
+                }
+                return returnRecipes;
             }
+        }
+        String[][] returnResource = new String[][] {};
+        LoadProducts loadProducts = new LoadProducts();
+        loadProducts.execute();
+        try {
+            returnResource = loadProducts.get();
         } catch (Exception e) {
             Toast.makeText(context, "Что-то пошло не так :c", Toast.LENGTH_LONG);
         }
-        return returnRecipes;
+        Toast.makeText(context, "Products loaded!", Toast.LENGTH_LONG);
+        return returnResource;
     }
 
-    public static String[][] loadAvailableProducts(Context context) {
-        String[][] availableProducts = getAvailableProducts(context);
-        String requestURI = "";
+    public static String[][] loadAvailableProducts(final Context context) {
+        class LoadProducts extends AsyncTask<Void, Void, String[][]> {
+            @Override
+            protected String[][] doInBackground(Void... voids) {
 
-        for (int i = 0; i < availableProducts.length; ++i) {
-            requestURI += availableProducts[i][0] + "|10000";
-            if (i < availableProducts.length - 1) {
-                requestURI += "@";
+                String[][] availableProducts = getAvailableProducts(context);
+                String requestURI = "";
+
+                for (int i = 0; i < availableProducts.length; ++i) {
+                    requestURI += availableProducts[i][0] + "|10000";
+                    if (i < availableProducts.length - 1) {
+                        requestURI += "@";
+                    }
+                }
+
+                NetworkRequests request = new NetworkRequests(context);
+
+                JSONArray jsonArray;
+                String[][] returnRecipes = {};
+                try {
+                    String response = request.doHTTPRequest("http://95.163.181.200/fridge/?query=calc&arr=" + requestURI + "&start=14000&end=60000&max=0&str=");
+                    jsonArray = new JSONArray(response);
+                    returnRecipes = new String[2][jsonArray.length()];
+                    for (int i = 0; i < jsonArray.length(); ++i) {
+                        returnRecipes[0][i] = jsonArray.getJSONObject(i).getString("id");
+                        returnRecipes[1][i] = jsonArray.getJSONObject(i).getString("name");
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(context, "Что-то пошло не так :c", Toast.LENGTH_LONG);
+                }
+                return returnRecipes;
             }
         }
-
-        NetworkRequests request = new NetworkRequests(context);
-        request.execute("http://95.163.181.200/fridge/?query=calc&arr=" + requestURI + "&start=14000&end=60000&max=0&str=");
-
-        JSONArray jsonArray;
-        String[][] returnRecipes = {};
+        LoadProducts loadProducts = new LoadProducts();
+        loadProducts.execute();
+        String[][] returnProducts = new String[][] {};
         try {
-            String response = request.get();
-            jsonArray = new JSONArray(response);
-            returnRecipes = new String[2][jsonArray.length()];
-            for (int i = 0; i < jsonArray.length(); ++i) {
-                returnRecipes[0][i] = jsonArray.getJSONObject(i).getString("id");
-                returnRecipes[1][i] = jsonArray.getJSONObject(i).getString("name");
-            }
+            returnProducts = loadProducts.get();
         } catch (Exception e) {
-            Toast.makeText(context, "Что-то пошло не так :c", Toast.LENGTH_LONG);
+            Toast.makeText(context, "Что-то пошло точно не так :c", Toast.LENGTH_LONG);
         }
-        return returnRecipes;
+        return returnProducts;
     }
 
     public static int getCategoryColorsById(String id) {

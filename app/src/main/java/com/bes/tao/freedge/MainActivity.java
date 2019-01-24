@@ -42,8 +42,6 @@ public class MainActivity extends AppCompatActivity {
         main_activity_object = this;
         setContentView(R.layout.activity_main);
 
-        loadResources();
-
         //Stack фрагментов - инициализация
         stack = new Stack<Fragment>();
 
@@ -90,7 +88,12 @@ public class MainActivity extends AppCompatActivity {
         back.setVisibility(View.INVISIBLE);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
 
+        loadResources();
+    }
 
     // TODO: Активити закрывается, если нажать Back при пустом стеке;
     @Override
