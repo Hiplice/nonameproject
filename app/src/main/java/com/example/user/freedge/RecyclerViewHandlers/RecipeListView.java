@@ -1,7 +1,5 @@
 package com.example.user.freedge.RecyclerViewHandlers;
 
-import android.app.Activity;
-import android.app.Fragment;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.app.FragmentManager;
