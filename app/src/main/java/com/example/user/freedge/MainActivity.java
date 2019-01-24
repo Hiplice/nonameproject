@@ -198,9 +198,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onButton(View view){
-        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).show();
-        /*Intent intent = new Intent(MainActivity.this,  ProductDialog.class);
-        startActivity(intent);*/
+        Intent intent = new Intent(MainActivity.this,  ProductDialog.class);
+        startActivity(intent);
     }
 
 
