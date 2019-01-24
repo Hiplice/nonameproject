@@ -185,7 +185,7 @@ public class DataHandler {
                 returnRecipes[0][i] = jsonArray.getJSONObject(i).getString("id");
                 returnRecipes[1][i] = jsonArray.getJSONObject(i).getString("name");
                 returnRecipes[2][i] = jsonArray.getJSONObject(i).getString("categories");
-                returnRecipes[3][i] = jsonArray.getJSONObject(i).getString("units").equals("0") ? "гр." : "шт.";
+                returnRecipes[3][i] = "гр.";
             }
         } catch (Exception e) {
             Toast.makeText(context, "Что-то пошло не так :c", Toast.LENGTH_LONG);
