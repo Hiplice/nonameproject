@@ -1,4 +1,4 @@
-package com.example.user.freedge;
+package com.bes.tao.freedge;
 
 import android.app.Fragment;
 import android.support.v7.app.ActionBar;
@@ -14,8 +14,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.user.freedge.Fragments.ProductsFragment;
-import com.example.user.freedge.RecyclerViewHandlers.ProductMenuListView;
+import com.bes.tao.freedge.Fragments.ProductsFragment;
+import com.bes.tao.freedge.RecyclerViewHandlers.ProductMenuListView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

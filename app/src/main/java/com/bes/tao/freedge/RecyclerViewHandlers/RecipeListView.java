@@ -1,4 +1,4 @@
-package com.example.user.freedge.RecyclerViewHandlers;
+package com.bes.tao.freedge.RecyclerViewHandlers;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -11,10 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.user.freedge.DataHandler;
-import com.example.user.freedge.Fragments.RecipesTextFragment;
-import com.example.user.freedge.MainActivity;
-import com.example.user.freedge.R;
+import com.bes.tao.freedge.DataHandler;
+import com.bes.tao.freedge.Fragments.RecipesTextFragment;
+import com.bes.tao.freedge.MainActivity;
+import com.bes.tao.freedge.R;
 
 public class RecipeListView extends RecyclerView.Adapter<RecipeListView.ViewHolder> {
 

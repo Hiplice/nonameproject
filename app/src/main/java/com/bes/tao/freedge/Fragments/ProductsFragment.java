@@ -1,4 +1,4 @@
-package com.example.user.freedge.Fragments;
+package com.bes.tao.freedge.Fragments;
 
 import android.app.Fragment;
 import android.content.Context;
@@ -9,9 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.user.freedge.DataHandler;
-import com.example.user.freedge.RecyclerViewHandlers.ProductMenuListView;
-import com.example.user.freedge.R;
+import com.bes.tao.freedge.DataHandler;
+import com.bes.tao.freedge.RecyclerViewHandlers.ProductMenuListView;
+import com.bes.tao.freedge.R;
 
 public class ProductsFragment extends Fragment {
 

@@ -1,4 +1,4 @@
-package com.example.user.freedge;
+package com.bes.tao.freedge;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,11 +14,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.user.freedge.Fragments.ProductsFragment;
-import com.example.user.freedge.Fragments.RecipesFragment;
-import com.example.user.freedge.Fragments.RecipesListFragment;
-import com.example.user.freedge.Fragments.RecipesTextFragment;
-import com.example.user.freedge.Fragments.SettingsFragment;
+import com.bes.tao.freedge.Fragments.ProductsFragment;
+import com.bes.tao.freedge.Fragments.RecipesFragment;
+import com.bes.tao.freedge.Fragments.RecipesListFragment;
+import com.bes.tao.freedge.Fragments.RecipesTextFragment;
+import com.bes.tao.freedge.Fragments.SettingsFragment;
 import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity {

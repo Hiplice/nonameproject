@@ -1,4 +1,4 @@
-package com.example.user.freedge.RecyclerViewHandlers;
+package com.bes.tao.freedge.RecyclerViewHandlers;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -16,10 +16,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.user.freedge.DataHandler;
-import com.example.user.freedge.Fragments.ProductsFragment;
-import com.example.user.freedge.MainActivity;
-import com.example.user.freedge.R;
+import com.bes.tao.freedge.DataHandler;
+import com.bes.tao.freedge.Fragments.ProductsFragment;
+import com.bes.tao.freedge.MainActivity;
+import com.bes.tao.freedge.R;
 
 public class ProductMenuListView extends RecyclerView.Adapter<ProductMenuListView.ViewHolder> {
 

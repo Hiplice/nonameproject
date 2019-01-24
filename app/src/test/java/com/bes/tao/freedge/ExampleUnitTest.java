@@ -1,4 +1,4 @@
-package com.example.user.freedge;
+package com.bes.tao.freedge;
 
 import org.junit.Test;
 

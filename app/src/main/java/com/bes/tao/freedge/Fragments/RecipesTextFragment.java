@@ -1,4 +1,4 @@
-package com.example.user.freedge.Fragments;
+package com.bes.tao.freedge.Fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.user.freedge.DataHandler;
-import com.example.user.freedge.R;
+import com.bes.tao.freedge.DataHandler;
+import com.bes.tao.freedge.R;
 
 public class RecipesTextFragment extends Fragment {
 
