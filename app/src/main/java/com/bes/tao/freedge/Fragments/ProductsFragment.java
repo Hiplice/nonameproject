@@ -30,10 +30,8 @@ public class ProductsFragment extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-
-        // Инициализирую ресайклер
+    public void onStart() {
+        super.onStart();
         initRecyclerView();
     }
 

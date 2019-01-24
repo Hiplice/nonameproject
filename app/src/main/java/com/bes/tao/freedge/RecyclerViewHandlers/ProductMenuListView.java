@@ -39,7 +39,6 @@ public class ProductMenuListView extends RecyclerView.Adapter<ProductMenuListVie
 
     public void refreshDataset(String[][] data) {
         mDataList = data;
-        notifyDataSetChanged();
     }
 
     @Override
@@ -55,9 +54,7 @@ public class ProductMenuListView extends RecyclerView.Adapter<ProductMenuListVie
                             public void onClick(View v) {
                                 DataHandler.removeProduct(Integer.valueOf(mDataList[position][0]), context);
                                 ProductsFragment productsFragment = ProductsFragment.getProductsFragment();
-                                productsFragment.onPause();
-                                productsFragment.onResume();
-                                //productsFragment.initRecyclerView();
+                                productsFragment.updateRecyclerView();
                             }
                         });
                 deleteItem.show();
