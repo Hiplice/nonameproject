@@ -26,6 +26,7 @@ public class ProductDialog extends AppCompatActivity {
     TextView countType;
     EditText productWeight;
     final String[] chosenElementInformation = new String[4];
+    private boolean itemChosen = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class ProductDialog extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String inputData = mAutoCompleteTextView.getText().toString();
+                itemChosen = true;
 
                 for (int i = 0; i < mData[0].length; ++i) {
                     if (mData[1][i].equals(inputData)) {
@@ -59,11 +61,13 @@ public class ProductDialog extends AppCompatActivity {
     }
 
     public void onOk(View view){
-        DataHandler.addProduct(Integer.valueOf(chosenElementInformation[0]),
-                chosenElementInformation[1], Integer.valueOf(productWeight.getText().toString()),
-                chosenElementInformation[3], Integer.valueOf(chosenElementInformation[2]),
-                getDate(), getBaseContext());
-        finish();
+        if (itemChosen && productWeight.getText().toString() != "") {
+            DataHandler.addProduct(Integer.valueOf(chosenElementInformation[0]),
+                    chosenElementInformation[1], Integer.valueOf(productWeight.getText().toString()),
+                    chosenElementInformation[3], Integer.valueOf(chosenElementInformation[2]),
+                    getDate(), getBaseContext());
+            finish();
+        }
     }
 
     public void onCancel(View view) {
