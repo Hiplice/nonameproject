@@ -100,9 +100,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (!stack.empty()) {
-            transaction = getFragmentManager().beginTransaction();
-            transaction.replace(R.id.contentContainer, stack.peek());
-            transaction.commit();
             if (stack.peek() == products) {
                 toolBarText.setText(R.string.appbar_products);
                 back.setVisibility(View.INVISIBLE);
@@ -123,6 +120,10 @@ public class MainActivity extends AppCompatActivity {
                     toolBarText.setText(R.string.available);
                 back.setVisibility(View.VISIBLE);
             }
+            transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.contentContainer, stack.peek());
+            transaction.commit();
+
             currentFragment = stack.peek();
             stack.pop();
         }
@@ -131,9 +132,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void onBack(View view) {
         if (!stack.empty()) {
-            transaction = getFragmentManager().beginTransaction();
-            transaction.replace(R.id.contentContainer, stack.peek());
-            transaction.commit();
             if (stack.peek() == products) {
                 toolBarText.setText(R.string.appbar_products);
                 back.setVisibility(View.INVISIBLE);
@@ -155,6 +153,10 @@ public class MainActivity extends AppCompatActivity {
                     toolBarText.setText(R.string.available);
                 back.setVisibility(View.VISIBLE);
             }
+            transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.contentContainer, stack.peek());
+            transaction.commit();
+
             currentFragment = stack.peek();
             stack.pop();
         }

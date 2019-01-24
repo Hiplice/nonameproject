@@ -65,13 +65,14 @@ public class RecipesListFragment extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(context);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        if (toolBarText.getText() == "Все рецепты") {
+        String toolBarGetText = toolBarText.getText().toString();
+        if (toolBarGetText.equals("Все рецепты")) {
             mAdapter = new RecipeListView(context, DataHandler.searchFirstNRecipes(100, "", context));
-        } else if (toolBarText.getText() == "Доступные рецепты") {
+        } else if (toolBarGetText.equals("Доступные рецепты")) {
             mAdapter = new RecipeListView(context, MainActivity.availableProducts);
-        } else if (toolBarText.getText() == "Избранное") {
+        } else if (toolBarGetText.equals("Избранное")) {
 
-        } else if (toolBarText.getText() == "Подборки") {
+        } else if (toolBarGetText.equals("Подборки")) {
 
         }
         mRecyclerView.setAdapter(mAdapter);
